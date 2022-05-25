@@ -13,11 +13,11 @@ ${anime}                    อนิเมะ
 ${sports}                   กีฬา
 ${play_news}                เพลย์ นิวส์
 ${ais_360_channel}          เอไอเอส 360 แชนแนล
-# ${netflix}                NETFLIX
-# ${disney_plus_hotstar}    Disney+ Hotstar
-# ${we_tv}                  WeTV
-# ${viu}                    VIU
-# ${ais_karaoke}            AIS KARAOKE
+${netflix}                  NETFLIX
+${disney_plus_hotstar}      Disney+ Hotstar
+${we_tv}                    WeTV
+${viu}                      VIU
+${ais_karaoke}              AIS KARAOKE
 ${partner}                  พาร์ทเนอร์
 ${browser}                  เบราว์เซอร์
 ${inbox}                    กล่องข้อความ
@@ -51,7 +51,7 @@ ${rewind_or_forward_time}           15 วินาที
 ${push_notifications}               การแจ้งเตือน
 
 
-# ${ui_language_en}                   English
+${ui_language_en}                   English
 ${ui_language_th}                   ไทย
 ${timeout_5s}                       5 วินาที
 ${timeout_10s}                      10 วินาที
@@ -67,6 +67,6 @@ ${audio_languge_en}                 อังกฤษ
 ${audio_languge_th}                 ไทย
 
 ${triage}                           ทริอาช
-# ${triage_view}                      1M
+${triage_view}                      1M
 ${nha_harn_the_series}              หน่าฮ่าน เดอะ ซีรีส์
-# ${nha_harn_the_series_view}         10M             
+${nha_harn_the_series_view}         10M             

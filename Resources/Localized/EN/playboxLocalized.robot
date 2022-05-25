@@ -52,7 +52,7 @@ ${push_notifications}               Push Notifications
 
 
 ${ui_language_en}                   English
-# ${ui_language_th}                   ไทย
+${ui_language_th}                   Thai
 ${timeout_5s}                       5 seconds                       
 ${timeout_10s}                      10 seconds
 ${timeout_15s}                      15 seconds
