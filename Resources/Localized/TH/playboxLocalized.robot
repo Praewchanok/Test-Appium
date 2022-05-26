@@ -37,7 +37,7 @@ ${common}                   ทั่วไป
 ${advanced}                 ขั้นสูง
 ${app_installer}            ติดตั้งแอป
 
-
+${topic_preferences}                ตั้งค่า
 ${ui_language}                      ภาษาที่ใช้งาน
 ${ui_language_en_or_th}             ไทย
 ${ui_timeout}                       ตั้งวลาปิดหน้าต่างเมื่อไม่ใช้งาน
@@ -66,7 +66,8 @@ ${timeout_never}                    ไม่เคย
 ${audio_languge_en}                 อังกฤษ
 ${audio_languge_th}                 ไทย
 
-${triage}                           ทริอาช
-${triage_view}                      1M
-${nha_harn_the_series}              หน่าฮ่าน เดอะ ซีรีส์
-${nha_harn_the_series_view}         10M             
+# ${triage}                           ทริอาช
+# ${nha_harn_the_series}              หน่าฮ่าน เดอะ ซีรีส์
+# ${bad_beauty}                       โฉมโฉด
+# ${saneha_stories_4}                 เสน่หาสตอรี่ 4
+# ${take_guy_out_thailand_season5}    เทคกายเอาท์ ไทยแลนด์ ปี5

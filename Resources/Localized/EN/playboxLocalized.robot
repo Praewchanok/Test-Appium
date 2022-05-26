@@ -37,7 +37,7 @@ ${common}                           Common
 ${advanced}                         Advanced
 ${app_installer}                    App Installer
 
-
+${topic_preferences}                Preferences
 ${ui_language}                      UI Language
 ${ui_language_en_or_th}             English
 ${ui_timeout}                       UI Timeout
@@ -52,7 +52,7 @@ ${push_notifications}               Push Notifications
 
 
 ${ui_language_en}                   English
-${ui_language_th}                   Thai
+${ui_language_th}                   ไทย
 ${timeout_5s}                       5 seconds                       
 ${timeout_10s}                      10 seconds
 ${timeout_15s}                      15 seconds
@@ -66,7 +66,8 @@ ${timeout_never}                    Never
 ${audio_languge_en}                 English
 ${audio_languge_th}                 Thai
 
-${triage}                           Triage
-${triage_view}                      1M
-${nha_harn_the_series}              Nha Harn The Series
-${nha_harn_the_series_view}         10M
+# ${triage}                           Triage
+# ${nha_harn_the_series}              Nha Harn The Series
+# ${bad_beauty}                       Bad Beauty
+# ${saneha_stories_4}                 Saneha Stories 4
+# ${take_guy_out_thailand_season5}    Take Guy Out Thailand Season5
