@@ -1,13 +1,13 @@
 *** Variable ***
-${home}                     HOME
-${live_tv}                  LIVE TV
-${live_sports}              LIVE SPORTS
-${football}                 FOOTBALL
-${tv_channels}              TV CHANNELS
-${movies}                   MOVIES
-${series}                   SERIES
-${varieties}                VARIETIES
-${concert_or_mv}            CONCERT / MV
+${home}                             HOME
+${live_tv}                          LIVE TV
+${live_sports}                      LIVE SPORTS
+${football}                         FOOTBALL
+${tv_channels}                      TV CHANNELS
+${movies}                           MOVIES
+${series}                           SERIES
+${varieties}                        VARIETIES
+${concert_or_mv}                    CONCERT / MV
 ${kids}                             KIDS
 ${anime}                            ANIME
 ${sports}                           SPORTS
@@ -49,7 +49,6 @@ ${audio_language_en_or_th}          English
 ${rewind_or_forward_interval}       Rewind/Forward interval
 ${rewind_or_forward_time}           15 seconds
 ${push_notifications}               Push Notifications
-
 
 ${ui_language_en}                   English
 ${ui_language_th}                   ไทย

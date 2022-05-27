@@ -50,7 +50,6 @@ ${rewind_or_forward_interval}       ย้อนกลับ /ถัดไป
 ${rewind_or_forward_time}           15 วินาที
 ${push_notifications}               การแจ้งเตือน
 
-
 ${ui_language_en}                   English
 ${ui_language_th}                   ไทย
 ${timeout_5s}                       5 วินาที
