@@ -1,4 +1,5 @@
 *** Variable ***
+
 ${home}                             HOME
 ${live_tv}                          LIVE TV
 ${live_sports}                      LIVE SPORTS

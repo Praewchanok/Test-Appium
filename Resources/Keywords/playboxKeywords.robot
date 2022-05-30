@@ -11,206 +11,160 @@ Open Playbox
     ...                 deviceName=${deviceName}    automationName=${automationName}    appActivity=${appActivity}
     ...                 appPackage=${appPackage}    noReset=${noReset}                  udid=${udid}
 
-Setting UI Language
-    [Documentation]     Owner: Praew
-    [Arguments]         ${select_ui_language}
-    Click Settings Manu       
-    Click Preferences Manu
-    Click UI Language
-    Select Language     ${select_ui_language}
-
-Setting UI Timeout       # Add Player UI Timeout
-    [Documentation]     Owner: Praew
-    [Arguments]         ${timeout}
-    Click Settings Manu       
-    Click Preferences Manu                 
-    Click UI Timeout
-    Select Timeout      ${timeout}
-
-# Setting Player UI Timeout
+# Setting Language
 #     [Documentation]     Owner: Praew
-#     [Arguments]         ${timeout}         
-    Click Player UI Timeout
-    Select Timeout      ${timeout}
+#     Click Settings Manu
+#     Click Preferences Manu
+#     Select Language     ${LANG}
+
+# Open Playbox And Setting Language
+#     [Documentation]     Owner: Praew
+#     Open Playbox
+#     Setting Language
+#     Go To Home Page
+
+Check Language In Application
+    [Documentation]     Owner: Praew
+    Wait Until Element Is Visible     ${lbl_navigation_menu}    30s    
+    ${content_desc}     Get Element Attribute    ${icn_search}      content-desc       
+    IF      "${content_desc}" == "Search Action"
+        ${lang_system}    Set Variable    EN
+    ELSE IF    "${content_desc}" == "การดำเนินการค้นหา"
+        ${lang_system}    Set Variable    TH
+    END
+    Set Test Variable       ${LANG_SYSTEM}      ${lang_system}
+    Run Keyword And Return Status       ${LANG_SYSTEM} 
+    # RETURN    ${lang_system}
 
 Click Settings Manu
     [Documentation]     Owner: Praew
-    Wait Element Is Visible     ${lbl_manu_home}
-    # Swipe By Percent    10      50      10      95      duration=1000
-    # Click Element       ${lbl_manu_concert_or_mv}
-    # Click Element       ${lbl_manu_settings}
-    Create List Manu
-    Loop For Find Element       ${settings}     ${lbl_manu_settings}    @{LIST_MANU}                   
+    Swipe By Percent    10      50        10      0       1000
+    Swipe By Percent    10      50        10      0       1000
+    Application Click Element       ${lbl_manu_settings}
+    Loop For Find Element       ${lbl_manu_settings}    @{lbl_list_manu}
 
-Create List Manu
-    [Documentation]     Owner: Praew
-    @{list_manu}        Create List
-    ...     ${lbl_manu_home}                ${lbl_manu_live_tv}             ${lbl_manu_live_sports}         ${lbl_manu_football}     
-    ...     ${lbl_manu_tv_channels}         ${lbl_manu_movies}              ${lbl_manu_series}              ${lbl_manu_varieties}
-    ...     ${lbl_manu_concert_or_mv}       ${lbl_manu_kids}                ${lbl_manu_anime}               ${lbl_manu_sports}
-    ...     ${lbl_manu_play_news}           ${lbl_manu_ais_360_channel}     ${lbl_manu_netflix}             ${lbl_manu_disney_plus_hotstar}
-    ...     ${lbl_manu_we_tv}               ${lbl_manu_viu}                 ${lbl_manu_ais_karaoke}         ${lbl_manu_partner}     
-    ...     ${lbl_manu_browser}             ${lbl_manu_inbox}               ${lbl_manu_settings}
-    Set Test Variable       @{LIST_MANU}     @{list_manu}
-
-# Create List Text Manu
-#     [Documentation]     Owner: Praew
-#     @{list_text_manu}    Create List
-#     ...     ${home}             ${live_tv}              ${live_sports}      ${football}                 ${tv_channels}      ${movies}         
-#     ...     ${series}           ${varieties}            ${concert_or_mv}    ${kids}                     ${anime}            ${sports}
-#     ...     ${play_news}        ${ais_360_channel}      ${netflix}          ${disney_plus_hotstar}      ${we_tv}            ${viu}
-#     ...     ${ais_karaoke}      ${partner}              ${browser}          ${inbox}                    ${settings}
-#     Set Test Variable       @{LIST_TEXT_MANU}     @{list_text_manu}    
+    # IF      ${LANG_SYSTEM} == ${LANG}       # Error = ${LANG_SYSTEM} is not defined nor importable as module
+    #     Log     ${LANG_SYSTEM}     
+    # ELSE
+    #     IF          ${LANG} == EN
+    #         Application Click Element       xpath=//*[@resource-id="com.ais.playbox.prod:id/header_label"][@text="SETTINGS"]
+    #     ELSE IF     ${LANG} == TH
+    #         Application Click Element       xpath=//*[@resource-id="com.ais.playbox.prod:id/header_label"][@text="ตั้งค่า"]
+    #     END 
+    # END                      
 
 Click Preferences Manu
     [Documentation]     Owner: Praew
-    Wait Element Is Visible         ${lbl_manu_preferences}
-    Click Element                   ${lbl_manu_preferences}
+    Application Click Element       ${lbl_manu_settings}
+    # IF      ${LANG_SYSTEM} == ${LANG}
+    #     Log     ${LANG_SYSTEM}
+    # ELSE
+    #     IF          ${LANG} == EN
+    #         Application Click Element       xpath=//*[@resource-id="com.ais.playbox.prod:id/header_label"][@text="Preferences"]
+    #     ELSE IF     ${LANG} == TH
+    #         Application Click Element       xpath=//*[@resource-id="com.ais.playbox.prod:id/header_label"][@text="การตั้งค่า"]
+    #     END 
+    # END
 
 Select Language
     [Documentation]     Owner: Praew
-    [Arguments]         ${select_ui_language}                
-    IF         "${select_ui_language}" == "${ui_language_en}"
-            # เพิ่ม รอปุ่ม
-            Click Element       ${lbl_ui_language_en}
-    ELSE IF    "${select_ui_language}" == "${ui_language_th}" or "${select_ui_language}" == "Thai"
-            # เพิ่ม รอปุ่ม เพราะ คอนเฟิมว่ามีปุ่มจริง 
-            Click Element       ${lbl_ui_language_th}
+    [Arguments]         ${LANG}
+    IF      ${LANG_SYSTEM} == ${LANG}
+        Log     ${LANG_SYSTEM}
+    ELSE IF                
+        IF         ${LANG} == EN
+            Application Click Element    ${lbl_ui_language_en}
+        ELSE IF    ${LANG} == TH
+            Application Click Element    ${lbl_ui_language_th}
+        END
     END          
 
 Select Timeout
     [Documentation]     Owner: Praew
-    [Arguments]         ${timeout}
-    Wait Element Is Visible         ${timeout}
-    Click Element                   ${timeout}
+    [Arguments]         ${locator}
+    Application Click Element    ${locator}
 
 Click UI Language
     [Documentation]     Owner: Praew
-    Wait Element Is Visible         ${lbl_ui_language}
-    Click Element                   ${lbl_ui_language}
+    Application Click Element       ${lbl_ui_language}
 
 Click UI Timeout
     [Documentation]     Owner: Praew
-    Wait Element Is Visible         ${lbl_ui_timeout}
-    Click Element                   ${lbl_ui_timeout}
+    Application Click Element       ${lbl_ui_timeout}
 
 Click Player UI Timeout
     [Documentation]     Owner: Praew
-    Wait Element Is Visible         ${lbl_player_ui_timeout}
-    Click Element                   ${lbl_player_ui_timeout}
+    Application Click Element       ${lbl_player_ui_timeout}
 
-Verify Setting UI Preferences Page      # เปลี่นนเป็นว่ามีปุ่มนี้
+Verify UI Timeout And Player UI Timeout      # เปลี่ยนเป็นว่ามีปุ่มนี้
     [Documentation]     Owner: Praew
-    Wait Element Is Visible     ${lbl_topic}         
-    Verify Element Text         ${lbl_topic}                        ${topic_preferences}
-    Verify Element Text         ${lbl_ui_language}                  ${ui_language}
-    Verify Element Text         ${lbl_ui_language_en_or_th}         ${ui_language_en_or_th}
-    Verify Element Text         ${lbl_ui_timeout}                   ${ui_timeout}
-    Verify Element Text         ${lbl_ui_timeout_never}             ${ui_timeout_never}
-    Verify Element Text         ${lbl_player_ui_timeout}            ${player_ui_timeout}
-    Verify Element Text         ${lbl_player_ui_timeout_never}      ${player_ui_timeout_never}
-    Verify Element Text         ${lbl_preferred_audio_language}     ${preferred_audio_language}
-    Verify Element Text         ${lbl_audio_language_en_or_th}      ${audio_language_en_or_th}
-    Verify Element Text         ${lbl_rewind_or_forward_interval}   ${rewind_or_forward_interval}
-    Verify Element Text         ${lbl_rewind_or_forward_time}       ${rewind_or_forward_time}
-    Verify Element Text         ${lbl_push_notifications}           ${push_notifications}
-    Verify Element Attribute    ${chk_push_notifications}           ${attr_checked}     true
+    Wait Until Element Is Visible      ${lbl_topic}         
+    Verify Element Is Visible    ${lbl_topic}
+    Verify Element Is Visible    ${lbl_ui_timeout}
+    # Verify Element Text          ${lbl_ui_timeout_never}             ${ui_timeout_never}
+    Verify Element Is Visible    ${lbl_player_ui_timeout}
+    # Verify Element Text         ${lbl_player_ui_timeout_never}      ${player_ui_timeout_never}
+    # Verify Element Attribute    ${chk_push_notifications}           ${attr_checked}     true
 
-# Verify Manu
-#     [Documentation]     Owner: Praew
-#     Wait Element Is Visible     ${lbl_manu_home}
-#     Verify List Element Text         ${lbl_manu_home}                    ${home}
-#     Verify List Element Text         ${lbl_manu_live_tv}                 ${live_tv}
-#     Verify List Element Text         ${lbl_manu_live_sports}             ${live_sports}
-#     Verify List Element Text         ${lbl_manu_football}                ${football}
-#     Verify List Element Text         ${lbl_manu_tv_channels}             ${tv_channels}
-#     Verify List Element Text         ${lbl_manu_movies}                  ${movies}
-#     Verify List Element Text         ${lbl_manu_series}                  ${series}
-#     Verify List Element Text         ${lbl_manu_varieties}               ${varieties}
-#     Verify List Element Text         ${lbl_manu_concert_or_mv}           ${concert_or_mv}
-#     Verify List Element Text         ${lbl_manu_kids}                    ${kids}
-#     Verify List Element Text         ${lbl_manu_anime}                   ${anime}
-#     Verify List Element Text         ${lbl_manu_sports}                  ${sports}
-#     Verify List Element Text         ${lbl_manu_play_news}               ${play_news}
-#     Verify List Element Text         ${lbl_manu_ais_360_channel}         ${ais_360_channel}
-#     Verify List Element Text         ${lbl_manu_netflix}                 ${netflix}
-#     Verify List Element Text         ${lbl_manu_disney_plus_hotstar}     ${disney_plus_hotstar}
-#     Verify List Element Text         ${lbl_manu_we_tv}                   ${we_tv}
-#     Verify List Element Text         ${lbl_manu_viu}                     ${viu}
-#     Verify List Element Text         ${lbl_manu_ais_karaoke}             ${ais_karaoke}
-#     Verify List Element Text         ${lbl_manu_partner}                 ${partner}
-#     Verify List Element Text         ${lbl_manu_browser}                 ${browser}
-#     Verify List Element Text         ${lbl_manu_inbox}                   ${inbox}
-#     Verify List Element Text         ${lbl_manu_settings}                ${settings}
-
-# Verify List Text Manu
-#     [Documentation]     Owner: Praew
-#     Wait Element Is Visible     ${lbl_manu_home}
-#     Create List Manu    
-#     Create List Text Manu
-#     Loop For Verify Text        @{LIST_MANU}    @{LIST_TEXT_MANU}
-
+Go To Home Page
+    Click Back
+    Click Home
 Verify List Manu
     [Documentation]     Owner: Praew
-    Wait Element Is Visible     ${lbl_manu_home}
-    Create List Manu
-    Loop For Verify             @{LIST_MANU}
+    Wait Until Element Is Visible     ${lbl_manu_home}
+    Loop For Verify             @{lbl_list_manu}
 
-Verify Banner App And Movies
+Verify Banner
     [Documentation]     Owner: Praew
-    Verify Element Is Visible       ${pic_banner_one}
-    Verify Element Is Visible       ${pic_banner_two}
-    Verify Element Is Visible       ${pic_banner_three}
-    Verify Element Is Visible       ${pic_netflix}
-    Verify Element Is Visible       ${pic_disney_plus_hotstar}
-    Verify Element Is Visible       ${pic_we_tv}      
-    Verify Element Is Visible       ${pic_triage}                              
-    Verify Element Is Visible       ${pic_nha_harn_the_series}
-    Verify Element Is Visible       ${pic_bad_beauty}
+    Wait Until Element Is Visible       ${pic_banner_one}
+    Verify Element Is Visible           ${pic_banner_one}
+    Verify Element Is Visible           ${pic_banner_two}
+    Verify Element Is Visible           ${pic_banner_three}
+
+Verify App
+    [Documentation]     Owner: Praew
+    Wait Until Element Is Visible       ${pic_netflix}
+    Verify Element Is Visible           ${pic_netflix}
+    Verify Element Is Visible           ${pic_disney_plus_hotstar}
+    Verify Element Is Visible           ${pic_we_tv}
+
+Verify Movies
+    [Documentation]     Owner: Praew
+    Wait Until Element Is Visible       ${pic_triage}      
+    Verify Element Is Visible           ${pic_triage}                              
+    Verify Element Is Visible           ${pic_nha_harn_the_series}
+    Verify Element Is Visible           ${pic_bad_beauty}
 
 # Loop
-Loop For Find Element       # อันนี้ไม่ได้ใช้ตัว index
+Loop For Find Element
     [Documentation]     Owner: Praew
-    [Arguments]         ${name}    ${locator}    @{list}       
-    FOR    ${index}    ${name_in_list}    IN ENUMERATE    @{list}
-        ${text}     Get Text    ${name_in_list}     # ไม่ค่อยโอเคเท่าไหร่ เหมือนเก็บมาตรวจซ้ำ        
-        IF      "${text}" == "${name}"
-            Click Element       ${locator}
-            BREAK       # มีค่าเท่ากับ  exit for loop 
-        ELSE
+    [Arguments]         ${locator}   @{list}
+    FOR    ${index}    ${name_manu}    IN ENUMERATE    @{list}
+        IF    ${index} == 22
+            Application Click Element    ${locator}
+            BREAK
+        ELSE   
             Click Down
-        END 
+        END           
     END
 
-Loop For Verify     # อันนี้ไม่ได้ใช้ตัว index
+Loop For Verify
     [Documentation]     Owner: Praew
     [Arguments]         @{list}
     FOR    ${index}    ${name_manu}    IN ENUMERATE    @{list}
-        Verify List Element Is Visible       ${name_manu} 
+        Verify Element Is Visible       ${name_manu}
+        IF    ${index} != 22
+            Click Down
+        END           
     END
 
-# Loop For Verify Text
-#     [Documentation]     Owner: Praew
-#     [Arguments]         @{list}     @{list_text}
-#     FOR    ${index}    ${name_manu}    IN ENUMERATE    @{list}
-#         ${text}     Get Text    ${name_manu}
-#         Verify List Element Text    ${text}     ${list_text}[${index}]             
-#     END
-
-# Wait Element
-Wait Element Is Visible
-    [Documentation]     Owner: Praew
-    [Arguments]         ${locator}
-    Wait Until Element Is Visible       ${locator}      30s
-
 # Click Element
+Click Home
+    [Documentation]     Owner: Praew
+    Press Keycode    3
+
 Click Back
     [Documentation]     Owner: Praew
-    Press Keycode    4
-
-Click Back Two Time
-    [Documentation]     Owner: Praew
-    Press Keycode    4
     Press Keycode    4
 
 Click Up
@@ -229,30 +183,22 @@ Click Right
     [Documentation]     Owner: Praew
     Press Keycode    22
 
-# กรุ๊ปคีย์ click element 
+Application Click Element
+    [Documentation]     Owner: Praew
+    [Arguments]         ${locator}
+    Wait Until Element Is Visible       ${locator}      30s
+    Click Element       ${locator}              
 
 # Verify
-Verify Element Text
-    [Documentation]     Owner: Praew
-    [Arguments]         ${locator}      ${expected}
-    Element Text Should Be              ${locator}      ${expected}
-
-# Verify List Element Text
-#     [Documentation]     Owner: Praew
-#     [Arguments]         ${locator}      ${expected}
-#     Element Text Should Be              ${locator}      ${expected}
-#     Click Down
-
 Verify Element Is Visible
     [Documentation]     Owner: Praew
     [Arguments]         ${locator}
     Element Should Be Visible           ${locator}
 
-Verify List Element Is Visible      # 
+Verify Element Text
     [Documentation]     Owner: Praew
-    [Arguments]         ${locator}
-    Element Should Be Visible           ${locator}
-    Click Down    
+    [Arguments]         ${locator}      ${expected}
+    Element Text Should Be              ${locator}      ${expected}   
 
 Verify Element Attribute
     [Documentation]     Owner: Praew

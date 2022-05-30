@@ -2,8 +2,6 @@
 Resource        ../Localized/${LANG}/playboxLocalized.robot
 
 *** Variable ***
-# @{lbl_list}     xpath=//*[@resource-id="com.ais.playbox.prod:id/header_label"][@text="${home}"]
-# ...             xpath=//*[@resource-id="com.ais.playbox.prod:id/header_label"][@text="${live_tv}"]     
 ${lbl_manu_home}                        xpath=//*[@resource-id="com.ais.playbox.prod:id/header_label"][@text="${home}"]
 ${lbl_manu_live_tv}                     xpath=//*[@resource-id="com.ais.playbox.prod:id/header_label"][@text="${live_tv}"]
 ${lbl_manu_live_sports}                 xpath=//*[@resource-id="com.ais.playbox.prod:id/header_label"][@text="${live_sports}"]
@@ -73,7 +71,7 @@ ${btn_ui_language_en}                   xpath=//*[@resource-id="com.ais.playbox.
 ${btn_ui_language_th}                   xpath=//*[@resource-id="com.ais.playbox.prod:id/container"][@index="1"]
 ${btn_timeout_never}                    xpath=//*[@resource-id="com.ais.playbox.prod:id/container"][@index="5"]
 
-${btn_navigation_menu}                  id=com.ais.playbox.prod:id/browse_headers
+${lbl_navigation_menu}                  id=com.ais.playbox.prod:id/browse_headers
 ${icn_search}                           id=com.ais.playbox.prod:id/icon
 ${lbl_clock}                            id=com.ais.playbox.prod:id/title_clock
 ${pic_network}                          id=com.ais.playbox.prod:id/title_network_state
@@ -83,6 +81,7 @@ ${chk_ui_language_th}                   xpath=(//*[@resource-id="com.ais.playbox
 ${chk_timeout_never}                    xpath=(//*[@resource-id="com.ais.playbox.prod:id/button"])[6]
 ${chk_push_notifications}               id=android:id/checkbox
 
+${pic_manu_preferences}
 ${pic_banner_one}                       xpath=(//*[@resource-id="com.ais.playbox.prod:id/card_banner_image"])[1]
 ${pic_banner_two}                       xpath=(//*[@resource-id="com.ais.playbox.prod:id/card_banner_image"])[2]
 ${pic_banner_three}                     xpath=(//*[@resource-id="com.ais.playbox.prod:id/card_banner_image"])[3]
