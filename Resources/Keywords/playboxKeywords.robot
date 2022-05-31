@@ -10,74 +10,45 @@ Open Playbox
     Open Application    ${remote_url}               platformName=${platformName}        platformVersion=${platformVersion}
     ...                 deviceName=${deviceName}    automationName=${automationName}    appActivity=${appActivity}
     ...                 appPackage=${appPackage}    noReset=${noReset}                  udid=${udid}
-
-# Setting Language
-#     [Documentation]     Owner: Praew
-#     Click Settings Manu
-#     Click Preferences Manu
-#     Select Language     ${LANG}
-
-# Open Playbox And Setting Language
-#     [Documentation]     Owner: Praew
-#     Open Playbox
-#     Setting Language
-#     Go To Home Page
-
-Check Language In Application
+check Language In System
     [Documentation]     Owner: Praew
-    Wait Until Element Is Visible     ${lbl_navigation_menu}    30s    
-    ${content_desc}     Get Element Attribute    ${icn_search}      content-desc       
-    IF      "${content_desc}" == "Search Action"
-        ${lang_system}    Set Variable    EN
-    ELSE IF    "${content_desc}" == "การดำเนินการค้นหา"
-        ${lang_system}    Set Variable    TH
+    ${text}    Get Element Attribute    ${icn_search}      ${attr_content-desc}
+    IF      ${text} == Search Action
+        ${system}   Set Variable    English
+    ELSE    ${text} == การดำเนินการค้นหา
+        ${system}   Set Variable    Thai 
     END
-    Set Test Variable       ${LANG_SYSTEM}      ${lang_system}
-    Run Keyword And Return Status       ${LANG_SYSTEM} 
-    # RETURN    ${lang_system}
 
 Click Settings Manu
     [Documentation]     Owner: Praew
-    Swipe By Percent    10      50        10      0       1000
-    Swipe By Percent    10      50        10      0       1000
-    Application Click Element       ${lbl_manu_settings}
-    Loop For Find Element       ${lbl_manu_settings}    @{lbl_list_manu}
+    Wait Until Element Is Visible       ${lbl_navigation_menu}      30s 
+    # Swipe By Percent    10      60        10      1       1000
+    # Swipe By Percent    10      60        10      1       1000
+    # Application Click Element       ${lbl_manu_settings}
+    # Loop For Find Element       ${lbl_manu_settings}    @{lbl_list_manu}
+    Loop For Find Element       @{lbl_list_manu}                      
 
-    # IF      ${LANG_SYSTEM} == ${LANG}       # Error = ${LANG_SYSTEM} is not defined nor importable as module
-    #     Log     ${LANG_SYSTEM}     
-    # ELSE
-    #     IF          ${LANG} == EN
-    #         Application Click Element       xpath=//*[@resource-id="com.ais.playbox.prod:id/header_label"][@text="SETTINGS"]
-    #     ELSE IF     ${LANG} == TH
-    #         Application Click Element       xpath=//*[@resource-id="com.ais.playbox.prod:id/header_label"][@text="ตั้งค่า"]
-    #     END 
-    # END                      
 
 Click Preferences Manu
     [Documentation]     Owner: Praew
-    Application Click Element       ${lbl_manu_settings}
-    # IF      ${LANG_SYSTEM} == ${LANG}
-    #     Log     ${LANG_SYSTEM}
-    # ELSE
-    #     IF          ${LANG} == EN
-    #         Application Click Element       xpath=//*[@resource-id="com.ais.playbox.prod:id/header_label"][@text="Preferences"]
-    #     ELSE IF     ${LANG} == TH
-    #         Application Click Element       xpath=//*[@resource-id="com.ais.playbox.prod:id/header_label"][@text="การตั้งค่า"]
-    #     END 
-    # END
+    [Arguments]         ${locator}         
+    ${text}     Get Text    ${locator}
+    IF      ${text} == Preferences      
+        Application Click Element    xpath=//*[@resource-id="com.ais.playbox.prod:id/tv_settings_name"][@text="Preferences"]
+    ELSE    ${text} == การตั้งค่า
+        Application Click Element    xpath=//*[@resource-id="com.ais.playbox.prod:id/tv_settings_name"][@text="การตั้งค่า"]
+    END
+    # Application Click Element       ${lbl_manu_preferences}
 
 Select Language
     [Documentation]     Owner: Praew
     [Arguments]         ${LANG}
-    IF      ${LANG_SYSTEM} == ${LANG}
-        Log     ${LANG_SYSTEM}
-    ELSE IF                
-        IF         ${LANG} == EN
-            Application Click Element    ${lbl_ui_language_en}
-        ELSE IF    ${LANG} == TH
-            Application Click Element    ${lbl_ui_language_th}
-        END
-    END          
+    
+    IF         ${LANG}:EN
+        Application Click Element    ${lbl_ui_language_en}
+    ELSE IF    ${LANG}:TH
+        Application Click Element    ${lbl_ui_language_th}
+    END        
 
 Select Timeout
     [Documentation]     Owner: Praew
@@ -86,7 +57,14 @@ Select Timeout
 
 Click UI Language
     [Documentation]     Owner: Praew
-    Application Click Element       ${lbl_ui_language}
+    [Arguments]         ${locator}         
+    ${text}     Get Text    ${locator}
+    IF      ${text} == Preferences      
+        Application Click Element    xpath=//*[@resource-id="com.ais.playbox.prod:id/tv_settings_name"][@text="UI Language"]
+    ELSE    ${text} == การตั้งค่า
+        Application Click Element    xpath=//*[@resource-id="com.ais.playbox.prod:id/tv_settings_name"][@text="ภาษาที่ใช้งาน"]
+    END
+    # Application Click Element       ${lbl_ui_language}
 
 Click UI Timeout
     [Documentation]     Owner: Praew
@@ -101,10 +79,9 @@ Verify UI Timeout And Player UI Timeout      # เปลี่ยนเป็น
     Wait Until Element Is Visible      ${lbl_topic}         
     Verify Element Is Visible    ${lbl_topic}
     Verify Element Is Visible    ${lbl_ui_timeout}
-    # Verify Element Text          ${lbl_ui_timeout_never}             ${ui_timeout_never}
+    Verify Element Is Visible    ${lbl_ui_timeout_never}
     Verify Element Is Visible    ${lbl_player_ui_timeout}
-    # Verify Element Text         ${lbl_player_ui_timeout_never}      ${player_ui_timeout_never}
-    # Verify Element Attribute    ${chk_push_notifications}           ${attr_checked}     true
+    Verify Element Is Visible    ${lbl_player_ui_timeout_never}
 
 Go To Home Page
     Click Back
@@ -135,18 +112,41 @@ Verify Movies
     Verify Element Is Visible           ${pic_nha_harn_the_series}
     Verify Element Is Visible           ${pic_bad_beauty}
 
+Verify Live TV Page
+    [Documentation]     Owner: Praew
+    Wait Until Element Is Visible       ${lbl_live_tv_number}
+    Verify Element Is Visible    ${lbl_live_tv_number}
+    Verify Element Is Visible    ${pic_live_tv_logo}
+    # Verify Element Is Visible    ${lbl_live_tv_title}
+    # Verify Element Is Visible    ${lbl_live_tv_next}
+    # Verify Element Is Visible    ${lbl_live_tv_epg_time}
+    # Verify Element Is Visible    ${lbl_live_tv_epg_title}
+    # Verify Element Is Visible    ${lbl_live_tv_epg_next}
+
+Verify Menu In Catagory Page
+    [Documentation]     Owner: Praew
+    Go To Top List Manu     ${lbl_quality}
+    Loop For Verify     @{lbl_list_live_tv}
+
+Go To Top List Manu
+    [Documentation]     Owner: Praew
+    [Arguments]         ${locator}
+    Wait Until Element Is Visible       ${locator}      30s
+    Click Up
+
 # Loop
 Loop For Find Element
     [Documentation]     Owner: Praew
-    [Arguments]         ${locator}   @{list}
+    [Arguments]         @{list}
     FOR    ${index}    ${name_manu}    IN ENUMERATE    @{list}
         IF    ${index} == 22
-            Application Click Element    ${locator}
+            Application Click Element    ${name_manu}
             BREAK
         ELSE   
             Click Down
-        END           
+        END          
     END
+
 
 Loop For Verify
     [Documentation]     Owner: Praew
@@ -182,6 +182,14 @@ Click Left
 Click Right
     [Documentation]     Owner: Praew
     Press Keycode    22
+
+Click Catagory
+    [Documentation]     Owner: Praew
+    Press Keycode    82
+
+Click Live TV
+    [Documentation]     Owner: Praew
+    Press Keycode    133
 
 Application Click Element
     [Documentation]     Owner: Praew

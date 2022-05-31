@@ -70,3 +70,19 @@ ${audio_languge_th}                 ไทย
 # ${bad_beauty}                       โฉมโฉด
 # ${saneha_stories_4}                 เสน่หาสตอรี่ 4
 # ${take_guy_out_thailand_season5}    เทคกายเอาท์ ไทยแลนด์ ปี5
+
+${add_to_favorites}                 เพิ่มรายการโปรด
+${program_guide}                    ผังรายการ
+${quality}                          คุณภาพวิดีโอ
+${audio}                            เสียงพากย์
+${all}                              ทั้งหมด
+${favorites}                        รายการโปรด
+${digital_tv}                       ดิจิตอลทีวี
+${movies_or_series}                 ภาพยนตร์ | ซีรีส์
+${variety_or_entertainment}         วาไรตี้ | บันเทิง
+${sports}                           กีฬา
+${kids_or_family}                   รายการเด็ก | ครอบครัว
+${documentaries}                    สารคดี
+${news_or_business}                 ข่าว | ธุรกิจ
+${education_or_religion}            การศึกษา | ศาสนา
+${shopping}                         ชอปปิง

@@ -71,3 +71,19 @@ ${audio_languge_th}                 Thai
 # ${bad_beauty}                       Bad Beauty
 # ${saneha_stories_4}                 Saneha Stories 4
 # ${take_guy_out_thailand_season5}    Take Guy Out Thailand Season5
+
+${add_to_favorites}                 Add to favorites
+${program_guide}                    Program guide
+${quality}                          Quality
+${audio}                            Audio
+${all}                              All
+${favorites}                        Favorites
+${digital_tv}                       Digital TV
+${movies_or_series}                 MOVIES | SERIES
+${variety_or_entertainment}         VARIETY | ENTERTAINMENT
+${sports}                           SPORTS
+${kids_or_family}                   KIDS | FAMILY
+${documentaries}                    DOCUMENTARIES
+${news_or_business}                 NEWS | BUSINESS
+${education_or_religion}            EDUCATION | RELIGION
+${shopping}                         SHOPPING
