@@ -24,48 +24,19 @@ ${lbl_manu_ais_karaoke}                 xpath=//*[@resource-id="com.ais.playbox.
 ${lbl_manu_partner}                     xpath=//*[@resource-id="com.ais.playbox.prod:id/header_label"][@text="${partner}"]
 ${lbl_manu_browser}                     xpath=//*[@resource-id="com.ais.playbox.prod:id/header_label"][@text="${browser}"]
 ${lbl_manu_inbox}                       xpath=//*[@resource-id="com.ais.playbox.prod:id/header_label"][@text="${inbox}"]
-${lbl_manu_settings}                    xpath=//*[@resource-id="com.ais.playbox.prod:id/header_label"][@text="${settings}"]
-# ${lbl_manu_settings}                    xpath=//*[@class="android.widget.FrameLayout"][@index="22"]
-
-${lbl_title_preferences}                xpath=//*[@resource-id="com.ais.playbox.prod:id/row_header"][@text="${preferences}"]
-${lbl_manu_my_profile}                  xpath=//*[@resource-id="com.ais.playbox.prod:id/tv_settings_name"][@text="${my_profile}"]
-${lbl_manu_recent}                      xpath=//*[@resource-id="com.ais.playbox.prod:id/tv_settings_name"][@text="${recent}"]
-${lbl_manu_favorites}                   xpath=//*[@resource-id="com.ais.playbox.prod:id/tv_settings_name"][@text="${favorites}"]
-${lbl_manu_preferences}                 xpath=//*[@resource-id="com.ais.playbox.prod:id/tv_settings_name"][@text="${preferences}"]
-${lbl_title_device}                     xpath=//*[@resource-id="com.ais.playbox.prod:id/row_header"][@text="${device}"]
-${lbl_manu_my_apps}                     xpath=//*[@resource-id="com.ais.playbox.prod:id/tv_settings_name"][@text="${my_apps}"]
-${lbl_manu_network}                     xpath=//*[@resource-id="com.ais.playbox.prod:id/tv_settings_name"][@text="${network}"]
-${lbl_manu_information}                 xpath=//*[@resource-id="com.ais.playbox.prod:id/tv_settings_name"][@text="${information}"]
-${lbl_manu_software_upgrade}            xpath=//*[@resource-id="com.ais.playbox.prod:id/tv_settings_name"][@text="${software_upgrade}"]
-${lbl_manu_common}                      xpath=//*[@resource-id="com.ais.playbox.prod:id/tv_settings_name"][@text="${common}"]
-${lbl_manu_advanced}                    xpath=//*[@resource-id="com.ais.playbox.prod:id/tv_settings_name"][@text="${advanced}"]
-${lbl_manu_app_installer}               xpath=//*[@resource-id="com.ais.playbox.prod:id/tv_settings_name"][@text="${app_installer}"]
+${lbl_manu_settings}                    xpath=//*[@resource-id="com.ais.playbox.prod:id/header_label"][@text="SETTINGS" or @text="ตั้งค่า"]
+${lbl_manu_preferences}                 xpath=//*[@resource-id="com.ais.playbox.prod:id/tv_settings_name"][@text="Preferences" or @text="การตั้งค่า"]
 
 ${lbl_topic}                            id=com.ais.playbox.prod:id/decor_title
-${lbl_ui_language}                      xpath=//*[@resource-id="android:id/title"][@text="${ui_language}"]
-${lbl_ui_language_en_or_th}             xpath=//*[@resource-id="android:id/summary"][@text="${ui_language_en_or_th}"]
+${lbl_ui_language}                      xpath=//*[@resource-id="android:id/title"][@text="UI Language" or @text="ภาษาที่ใช้งาน"]
+${lbl_ui_language_en_or_th}             xpath=//*[@resource-id="android:id/summary"][@text="English" or @text="ไทย"]
 ${lbl_ui_timeout}                       xpath=//*[@resource-id="android:id/title"][@text="${ui_timeout}"]
 ${lbl_ui_timeout_never}                 xpath=//*[@resource-id="android:id/summary"][@text="${ui_timeout_never}"]
 ${lbl_player_ui_timeout}                xpath=//*[@resource-id="android:id/title"][@text="${player_ui_timeout}"]
 ${lbl_player_ui_timeout_never}          xpath=//*[@resource-id="android:id/summary"][@text="${player_ui_timeout_never}"]
-${lbl_preferred_audio_language}         xpath=//*[@resource-id="android:id/title"][@text="${preferred_audio_language}"]
-${lbl_audio_language_en_or_th}          xpath=//*[@resource-id="android:id/summary"][@text="${audio_language_en_or_th}"]
-${lbl_rewind_or_forward_interval}       xpath=//*[@resource-id="android:id/title"][@text="${rewind_or_forward_interval}"]
-${lbl_rewind_or_forward_time}           xpath=//*[@resource-id="android:id/summary"][@text="${rewind_or_forward_time}"]
-${lbl_push_notifications}               xpath=//*[@resource-id="android:id/title"][@text="${push_notifications}"]
-
 
 ${lbl_ui_language_en}                   xpath=//*[@resource-id="android:id/title"][@text="${ui_language_en}"]
 ${lbl_ui_language_th}                   xpath=//*[@resource-id="android:id/title"][@text="${ui_language_th}"]
-# ${lbl_timeout_5s}                       xpath=//*[@resource-id="android:id/title"][@text="${timeout_5s}"]
-# ${lbl_timeout_10s}                      xpath=//*[@resource-id="android:id/title"][@text="${timeout_10s}"]
-# ${lbl_timeout_15s}                      xpath=//*[@resource-id="android:id/title"][@text="${timeout_15s}"]
-# ${lbl_timeout_20s}                      xpath=//*[@resource-id="android:id/title"][@text="${timeout_20s}"]
-# ${lbl_timeout_25s}                      xpath=//*[@resource-id="android:id/title"][@text="${timeout_25s}"]
-# ${lbl_timeout_30s}                      xpath=//*[@resource-id="android:id/title"][@text="${timeout_30s}"]
-# ${lbl_timeout_1m}                       xpath=//*[@resource-id="android:id/title"][@text="${timeout_1m}"]
-# ${lbl_timeout_2m}                       xpath=//*[@resource-id="android:id/title"][@text="${timeout_2m}"]
-# ${lbl_timeout_5m}                       xpath=//*[@resource-id="android:id/title"][@text="${timeout_5m}"]
 ${lbl_timeout_never}                    xpath=//*[@resource-id="android:id/title"][@text="${timeout_never}"]
 
 ${lbl_live_tv_number}                   xpath=(//*[@resource-id="com.ais.playbox.prod:id/channel_number"])[8]
@@ -98,23 +69,15 @@ ${btn_timeout_never}                    xpath=//*[@resource-id="com.ais.playbox.
 
 ${lbl_navigation_menu}                  id=com.ais.playbox.prod:id/browse_headers
 ${icn_search}                           id=com.ais.playbox.prod:id/icon
-${lbl_clock}                            id=com.ais.playbox.prod:id/title_clock
-${pic_network}                          id=com.ais.playbox.prod:id/title_network_state
 
-${chk_ui_language_en}                   xpath=(//*[@resource-id="com.ais.playbox.prod:id/button"])[1]
-${chk_ui_language_th}                   xpath=(//*[@resource-id="com.ais.playbox.prod:id/button"])[2]
-${chk_timeout_never}                    xpath=(//*[@resource-id="com.ais.playbox.prod:id/button"])[6]
-${chk_push_notifications}               id=android:id/checkbox
-
-${pic_manu_preferences}
 ${pic_banner_one}                       xpath=(//*[@resource-id="com.ais.playbox.prod:id/card_banner_image"])[1]
 ${pic_banner_two}                       xpath=(//*[@resource-id="com.ais.playbox.prod:id/card_banner_image"])[2]
 ${pic_banner_three}                     xpath=(//*[@resource-id="com.ais.playbox.prod:id/card_banner_image"])[3]
 ${pic_netflix}                          xpath=(//*[@resource-id="com.ais.playbox.prod:id/card_app_icon"])[1]
 ${pic_disney_plus_hotstar}              xpath=(//*[@resource-id="com.ais.playbox.prod:id/card_app_icon"])[2]
 ${pic_we_tv}                            xpath=(//*[@resource-id="com.ais.playbox.prod:id/card_app_icon"])[3]
-# ${pic_viu}                              xpath=(//*[@resource-id="com.ais.playbox.prod:id/card_app_icon"])[4]
-# ${pic_ais_karaoke}                      xpath=(//*[@resource-id="com.ais.playbox.prod:id/card_app_icon"])[5]
+${pic_viu}                              xpath=(//*[@resource-id="com.ais.playbox.prod:id/card_app_icon"])[4]
+${pic_ais_karaoke}                      xpath=(//*[@resource-id="com.ais.playbox.prod:id/card_app_icon"])[5]
 ${pic_triage}                           xpath=(//*[@resource-id="com.ais.playbox.prod:id/card_movie_image"])[1]
 ${pic_nha_harn_the_series}              xpath=(//*[@resource-id="com.ais.playbox.prod:id/card_movie_image"])[2]
 ${pic_bad_beauty}                       xpath=(//*[@resource-id="com.ais.playbox.prod:id/card_movie_image"])[3]
