@@ -8,31 +8,38 @@ Resource        ../Localized/${LANG}/playboxLocalized.robot
 *** Keywords ***
 Open Playbox
     [Documentation]     Owner: Praew
-    Open Application    ${remote_url}               platformName=${platformName}        platformVersion=${platformVersion}
-    ...                 deviceName=${deviceName}    automationName=${automationName}    appActivity=${appActivity}
-    ...                 appPackage=${appPackage}    noReset=${noReset}                  udid=${udid}
+    Open Application    
+    ...                 ${remote_url}
+    ...                 platformName=${platformName}
+    ...                 platformVersion=${platformVersion}
+    ...                 deviceName=${deviceName}
+    ...                 automationName=${automationName}
+    ...                 appActivity=${appActivity}
+    ...                 appPackage=${appPackage}
+    ...                 noReset=${noReset}
+    ...                 udid=${udid}
 
 Check Language
     [Documentation]     Owner: Praew
-    Wait Until Element Is Visible       ${icn_search}       30s
+    Wait Element Is Visible       ${icn_search}
     ${text}    Get Element Attribute    ${icn_search}      ${attr_content-desc}
     IF          "${LANG}" == "TH"
         IF      "${text}" == "Search Action"
-            Click Settings Manu
-            Click Preferences Manu
+            Click Settings Menu
+            Click Preferences Menu
             Click UI Language
             Select Language     ${LANG}
-            Verify Element Is Visible       ${lbl_ui_language_en_or_th}
+            Verify Element Is Visible       ${lbl_ui_language_selected}
         ELSE
             Verify Element Is Visible       ${icn_search}
         END
     ELSE        
         IF      "${text}" == "การดำเนินการค้นหา"
-            Click Settings Manu
-            Click Preferences Manu
+            Click Settings Menu
+            Click Preferences Menu
             Click UI Language
             Select Language     ${LANG}
-            Verify Element Is Visible       ${lbl_ui_language_en_or_th}
+            Verify Element Is Visible       ${lbl_ui_language_selected}
         ELSE
             Verify Element Is Visible       ${icn_search}
         END
@@ -44,72 +51,90 @@ Open Playbox And Check Language
     Check Language
     Go To Home Page
 
-Click Settings Manu
+Click Settings Menu
     [Documentation]     Owner: Praew
-    Wait Until Element Is Visible       ${lbl_navigation_menu}      30s 
-    # Swipe By Percent    10      60        10      1       1000
-    # Swipe By Percent    10      60        10      1       1000
-    # Application Click Element       ${lbl_manu_settings}
-    # Loop For Find Element       ${lbl_manu_settings}    @{lbl_list_manu}
-    Loop For Find Element       @{lbl_list_manu}                      
+    Wait Element Is Visible     ${lbl_left_panel}
+    Loop For Find Menu          22      @{lbl_list_menu}                    
 
-Click Preferences Manu
+Click Preferences Menu
     [Documentation]     Owner: Praew
-    Application Click Element       ${lbl_manu_preferences}
+    Remote Click Element       ${lbl_menu_preferences}
 
 Click UI Language
     [Documentation]     Owner: Praew
-    Application Click Element       ${lbl_ui_language}
+    Remote Click Element       ${lbl_ui_language}
 
 Click UI Timeout
     [Documentation]     Owner: Praew
-    Application Click Element       ${lbl_ui_timeout}
+    Remote Click Element       ${lbl_ui_timeout}
 
 Click Player UI Timeout
     [Documentation]     Owner: Praew
-    Application Click Element       ${lbl_player_ui_timeout}
+    Remote Click Element       ${lbl_player_ui_timeout}
 
-Select Language
+Click Movies Menu
+    [Documentation]     Owner: Praew
+    # Remote Click Element        ${lbl_menu_movies}
+    Wait Element Is Visible     ${lbl_left_panel}
+    Loop For Find Menu          5      @{lbl_list_menu}
+
+Click Search Icon
+    [Documentation]     Owner: Praew
+    Click Left
+    Remote Click Element        ${icn_search}        
+
+Click Search Button
+    [Documentation]     Owner: Praew
+    Press Keycode    66
+    # Press Keycode   ${txt_search}
+
+Select UI Language
     [Documentation]     Owner: Praew
     [Arguments]         ${LANG}
     IF         "${LANG}" == "EN"
-        Application Click Element    ${lbl_ui_language_en}
+        Remote Click Element    ${lbl_ui_language_en}
     ELSE IF    "${LANG}" == "TH"
-        Application Click Element    ${lbl_ui_language_th}
+        Remote Click Element    ${lbl_ui_language_th}
     END
 
 Select Timeout
     [Documentation]     Owner: Praew
     [Arguments]         ${locator}
-    Application Click Element    ${locator}
+    Remote Click Element    ${locator}         
+
+Select Type Movies
+    [Documentation]     Owner: Praew
+    [Arguments]         ${locator}
+    Loop For Select     ${locator}      @{lbl_list_movies}      
+
+Verify UI Language
+    [Documentation]     Owner: Praew
+    [Arguments]         ${locator}
+    Verify Element Is Visible       ${locator}
 
 Verify UI Timeout And Player UI Timeout
-    [Documentation]     Owner: Praew
-    Wait Until Element Is Visible      ${lbl_topic}         
+    [Documentation]     Owner: Praew         
     Verify Element Is Visible    ${lbl_topic}
-    Verify Element Is Visible    ${lbl_ui_timeout}
     Verify Element Is Visible    ${lbl_ui_timeout_never}
-    Verify Element Is Visible    ${lbl_player_ui_timeout}
     Verify Element Is Visible    ${lbl_player_ui_timeout_never}
 
-Verify List Manu
+Verify Menu
     [Documentation]     Owner: Praew
-    Wait Until Element Is Visible     ${lbl_manu_home}
-    Loop For Verify     22      @{lbl_list_manu}
+    Wait Element Is Visible     ${lbl_menu_home}
+    Loop For Verify     22      @{lbl_list_menu}
 
 Verify Banner
     [Documentation]     Owner: Praew
-    Wait Until Element Is Visible       ${pic_banner_one}
-    Verify Element Is Visible           ${pic_banner_one}
-    Verify Element Is Visible           ${pic_banner_two}
-    Verify Element Is Visible           ${pic_banner_three}
+    Verify Element Is Visible       ${pic_banner_one}
+    Verify Element Is Visible       ${pic_banner_two}
+    Verify Element Is Visible       ${pic_banner_three}
 
 Verify App
     [Documentation]     Owner: Praew
-    Wait Until Element Is Visible       ${pic_netflix}
-    Verify Element Is Visible           ${pic_netflix}
-    Verify Element Is Visible           ${pic_disney_plus_hotstar}
-    Verify Element Is Visible           ${pic_we_tv}
+    Verify Element Is Visible       ${pic_netflix}
+    Verify Element Is Visible       ${pic_disney}
+    Verify Element Is Visible       ${pic_we_tv}
+    Verify Element Is Visible       ${pic_viu}
 
 Verify Movies
     [Documentation]     Owner: Praew
@@ -118,38 +143,79 @@ Verify Movies
     Verify Element Is Visible           ${pic_nha_harn_the_series}
     Verify Element Is Visible           ${pic_bad_beauty}
 
-Verify Live TV Page
-    [Documentation]     Owner: Praew
-    Wait Until Element Is Visible       ${lbl_live_tv_number}
-    Verify Element Is Visible    ${lbl_live_tv_number}
-    Verify Element Is Visible    ${pic_live_tv_logo}
-    # Verify Element Is Visible    ${lbl_live_tv_title}
-    # Verify Element Is Visible    ${lbl_live_tv_next}
-    # Verify Element Is Visible    ${lbl_live_tv_epg_time}
-    # Verify Element Is Visible    ${lbl_live_tv_epg_title}
-    # Verify Element Is Visible    ${lbl_live_tv_epg_next}
-
-Verify Banner App       # robot -d "010622" -v "LANG:EN" -v "images_dir:actual" "playbox.robot" 
+Verify App Position       # robot -d "020622" -v "LANG:EN" -v "images_dir:actual" "playbox.robot" 
     Open Eyes    AppiumLibrary
-    Wait Until Element Is Visible       ${pic_netflix}
-    Capture Element     ${pic_netflix}                  tolerance=1    name=Netflix
-    Capture Element     ${pic_disney_plus_hotstar}      tolerance=1    name=Disney Plus Hotstar
-    Capture Element     ${pic_we_tv}                    tolerance=1    name=We TV
-    Capture Element     ${pic_viu}                      tolerance=1    name=Viu
-    Capture Element     ${pic_ais_karaoke}              tolerance=1    name=AIS Karaoke
+    Wait Element Is Visible       ${pic_netflix}
+    Capture Element     ${pic_netflix}      tolerance=1    name=Netflix
+    Capture Element     ${pic_disney}       tolerance=1    name=Disney Plus Hotstar
+    Capture Element     ${pic_we_tv}        tolerance=1    name=We TV
+    Capture Element     ${pic_viu}          tolerance=1    name=Viu
     Compare Images
 
-Verify List Catagory
+Verify Live TV Page
+    [Documentation]     Owner: Praew
+    Verify Element Is Visible    ${lbl_channel_number}
+    Verify Element Is Visible    ${pic_channel_logo}
+    Verify Element Is Visible    ${lbl_now_on}
+    Verify Element Is Visible    ${lbl_next}
+    Verify Element Is Visible    ${lbl_duration}
+    Verify Element Is Visible    ${lbl_tv_program}
+    Verify Element Is Visible    ${lbl_next_tv_program}
+
+Verify Category
     [Documentation]     Owner: Praew
     Go To Top           ${lbl_quality}
     Loop For Verify     14      @{lbl_list_live_tv}
 
+Verify Movies Category
+    [Documentation]     Owner: Praew
+    Wait Element Is Visible     ${lbl_menu_promotions}
+    Loop For Verify     12      @{lbl_list_movies}
+
 Verify Left Panel
-Verify Focusing Button Is Green
-Verify List Menu Top To Down
-Verify List Menu Down To Top
-Verify Right Panel
+    [Documentation]     Owner: Praew
+    Verify Element Is Visible    ${lbl_left_panel}
+
+Verify Highlighting Button
+    [Documentation]     Owner: Praew
+    Verify Element Is Visible       ${btn_highlighting}
     
+Verify Poster Movies
+    [Documentation]     Owner: Praew
+    [Arguments]         ${locator_title}    ${locator_poster}
+    Verify Element Is Visible       ${locator_title}
+    Verify Element Is Visible       ${locator_poster}
+    # Verify In Range     ${pic_poster_movies}        1       8
+    # Verify In Range     ${pic_name_movies}          1       8
+    # Verify In Range     ${pic_views_count}          1       8     
+
+Verify Search Page
+    [Documentation]     Owner: Praew
+    Is Keyboard Shown
+    # Open Eyes    AppiumLibrary
+    # Wait Element Is Visible       ${pic_keyboard}
+    # Capture Element     ${pic_keyboard}      tolerance=1    name=Keyboard
+    # Compare Images
+
+Verify Result Search Page
+    [Documentation]     Owner: Praew
+    Wait Element Is Visible     ${lbl_result_live}
+    Loop For Verify Result Search          
+
+# Select Movies Category
+#     [Documentation]     Owner: Praew
+#     [Arguments]         ${locator}    @{list}
+#     Wait Until Element Is Visible       ${lbl_left_panel}      30s
+#     Loop For Select Menu       ${locator}    @{list}
+
+Verify Home Button
+    [Documentation]     Owner: Praew
+    Wait Element Is Visible  ${lbl_menu_home}
+# Wait Element
+Wait Element Is Visible
+    [Documentation]     Owner: Praew
+    [Arguments]         ${locator}
+    Wait Until Element Is Visible       ${locator}      30s
 
 # Go To
 Go To Home Page
@@ -160,34 +226,105 @@ Go To Home Page
 Go To Top
     [Documentation]     Owner: Praew
     [Arguments]         ${locator}
-    Wait Until Element Is Visible       ${locator}      30s
+    Wait Element Is Visible       ${locator}
     Click Up
 
 # Loop
-Loop For Find Element
+Loop For Find Menu
     [Documentation]     Owner: Praew
-    [Arguments]         @{list}
-    FOR    ${index}    ${name_manu}    IN ENUMERATE    @{list}
-        IF    ${index} == 22
-            Application Click Element    ${name_manu}
+    [Arguments]         ${index_menu}      @{list}
+    FOR    ${index}    ${menu}    IN ENUMERATE    @{list}
+        IF    "${index}" == "${index_menu}"
+            Remote Click Element    ${menu}
             BREAK
         ELSE   
             Click Down
         END          
     END
-
-
+    
 Loop For Verify
     [Documentation]     Owner: Praew
-    [Arguments]         ${last_number_in_list}    @{list}
-    FOR    ${index}    ${name_manu}    IN ENUMERATE    @{list}
-        Verify Element Is Visible       ${name_manu}
-        IF    ${index} != ${last_number_in_list}
+    [Arguments]         ${index_menu}    @{list}
+    FOR    ${index}     ${menu}    IN ENUMERATE    @{list}
+        Verify Element Is Visible       ${menu}
+        IF    ${index} != ${index_menu}
             Click Down
         END           
     END
 
-# Click Element
+Loop For Verify Result Search
+    [Documentation]     Owner: Praew     
+    FOR     ${title}    IN    @{lbl_result_search}
+        IF          '${title}' == '${lbl_result_live}'
+            ${status}     Run Keyword And Return Status      Page Should Not Contain Element     ${pic_result_live}
+            Loop For Check Status Result Search       ${status}       ${title}        ${pic_result_live}          ${lbl_result_live_title}        ${lbl_nothing}
+        ELSE IF     '${title}' == '${lbl_result_movies}'
+            ${status}     Run Keyword And Return Status      Page Should Not Contain Element     ${pic_result_movies}
+            Loop For Check Status Result Search       ${status}       ${title}        ${pic_result_movies}        ${lbl_result_movies_title}      ${lbl_nothing}
+        ELSE IF     '${title}' == '${lbl_result_series}'
+            ${status}     Run Keyword And Return Status      Page Should Not Contain Element     ${pic_result_series}
+            Loop For Check Status Result Search       ${status}       ${title}        ${pic_result_series}        ${lbl_result_series}            ${lbl_nothing}
+        ELSE IF     '${title}' == '${lbl_result_episodes}'
+            ${status}     Run Keyword And Return Status      Page Should Not Contain Element     ${pic_result_episodes}
+            Loop For Check Status Result Search       ${status}       ${title}        ${pic_result_episodes}      ${lbl_result_episodes}          ${lbl_nothing}
+        END     
+    END
+
+Loop For Check Status Result Search
+    [Documentation]     Owner: Praew
+    [Arguments]         ${status}    ${locator_title}    ${locator_pic}    ${locator_text}    ${locator_nothing}
+    Click Down
+    IF      "${status}" == "True"
+        Verify Element Is Visible       ${locator_nothing}
+    ELSE
+        Verify Element Is Visible       ${locator_title}
+        Verify Element Is Visible       ${locator_pic}
+        Verify Element Is Visible       ${locator_text}
+    END
+    # Click Down      
+
+Loop For Select
+    [Documentation]     Owner: Praew
+    [Arguments]         ${locator}    @{list}
+    FOR    ${name_menu}    IN    @{list}
+        IF    '${name_menu}' == '${locator}'
+            BREAK
+        ELSE   
+            Click Down
+        END          
+    END
+#     FOR    ${index}     ${name_menu}    IN ENUMERATE    @{list}
+#         IF      "${name_menu}" == "${locator}"
+#             Check List Poster       ${btn_highlighting}[${index}]   
+#             BREAK
+#         ELSE   
+#             Click Down
+#         END          
+#     END
+
+# Check List Poster
+#     [Documentation]     Owner: Praew
+#     [Arguments]     ${index}    
+#     Check List      ${index}    ${comedy_movies}    @{lbl_list_poster}
+
+# Check List
+#     [Documentation]     Owner: Praew
+#     [Arguments]         ${index}    ${expected}    @{list}         
+#     FOR     ${locator}    IN RANGE      @{list}
+#         ${text}     Get Element Attribute    ${locator}[${index}]       ${attr_content-desc}
+#         IF      "${text}" == "${expected}"
+#             BREAK
+#         END
+#     END
+
+# Input Text
+Input Text Box
+    [Documentation]     Owner: Praew
+    [Arguments]         ${locator}      ${text}
+    Wait Until Element Is Visible       ${locator}
+    Input Text          ${locator}      ${text}
+
+# Click Button
 Click Home
     [Documentation]     Owner: Praew
     Press Keycode    3
@@ -212,7 +349,13 @@ Click Right
     [Documentation]     Owner: Praew
     Press Keycode    22
 
-Click Catagory
+Click Ok
+    [Documentation]     Owner: Praew
+    [Arguments]         ${locator}
+    Wait Until Element Is Visible    ${locator}   
+    Press Keycode    23
+
+Click Category Button
     [Documentation]     Owner: Praew
     Press Keycode    82
 
@@ -220,25 +363,34 @@ Click Live TV
     [Documentation]     Owner: Praew
     Press Keycode    133
 
-Application Click Element
+Remote Click Element
     [Documentation]     Owner: Praew
     [Arguments]         ${locator}
-    Wait Until Element Is Visible       ${locator}      30s
+    Wait Element Is Visible       ${locator}
     Click Element       ${locator}              
 
 # Verify
 Verify Element Is Visible
     [Documentation]     Owner: Praew
     [Arguments]         ${locator}
-    Wait Until Element Is Visible       ${locator}      30s
-    Element Should Be Visible           ${locator}
+    Wait Element Is Visible         ${locator}
+    Element Should Be Visible       ${locator}
 
 Verify Element Text
     [Documentation]     Owner: Praew
     [Arguments]         ${locator}      ${expected}
-    Element Text Should Be              ${locator}      ${expected}   
+    Wait Element Is Visible     ${locator}
+    Element Text Should Be      ${locator}      ${expected}   
 
 Verify Element Attribute
     [Documentation]     Owner: Praew
     [Arguments]         ${locator}      ${attr_name}    ${match_pattern}
+    Wait Element Is Visible     ${locator}
     Element Attribute Should Match      ${locator}      ${attr_name}    ${match_pattern}
+
+Verify In Range
+    [Documentation]     Owner: Praew
+    [Arguments]         ${locator}      ${start}    ${end}
+    FOR     ${locator}    IN RANGE    ${start}    ${end}
+        Verify Element Is Visible       ${locator}
+    END
