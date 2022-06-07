@@ -64,7 +64,3 @@ ${horror_thai_movies}
 ${western_movies}                   
 ${chinese_movies}
 
-${result_live}
-${result_movies}
-${result_series}
-${result_episodes}

@@ -7,9 +7,9 @@ ${txt_search}                           id=com.ais.playbox.prod:id/lb_search_tex
 ${pic_keyboard}                         id=com.ais.playbox.prod:id/lb_results_frame
 # ${lbl_navigation_menu}                  id=com.ais.playbox.prod:id/browse_headers
 ${lbl_left_panel}                       id=com.ais.playbox.prod:id/browse_headers
-# ${lbl_right_panel}                      id=idcom.ais.playbox.prod:id/container_list
+${lbl_right_panel}                      id=idcom.ais.playbox.prod:id/container_list
 ${btn_highlighting}                     xpath=//*[@class="android.widget.LinearLayout"][@focused="true"]
-
+# Home Menu
 ${lbl_menu_home}                        xpath=//*[@resource-id="com.ais.playbox.prod:id/header_label"][@text="${home}"]
 ${lbl_menu_live_tv}                     xpath=//*[@resource-id="com.ais.playbox.prod:id/header_label"][@text="${live_tv}"]
 ${lbl_menu_live_sports}                 xpath=//*[@resource-id="com.ais.playbox.prod:id/header_label"][@text="${live_sports}"]
@@ -56,7 +56,7 @@ ${pic_viu}                              xpath=(//*[@resource-id="com.ais.playbox
 ${pic_triage}                           xpath=(//*[@resource-id="com.ais.playbox.prod:id/card_movie_image"])[1]
 ${pic_nha_harn_the_series}              xpath=(//*[@resource-id="com.ais.playbox.prod:id/card_movie_image"])[2]
 ${pic_bad_beauty}                       xpath=(//*[@resource-id="com.ais.playbox.prod:id/card_movie_image"])[3]
-
+# Live TV Menu
 ${lbl_channel_number}                   xpath=(//*[@resource-id="com.ais.playbox.prod:id/channel_number"])[8]
 ${pic_channel_logo}                     xpath=(//*[@resource-id="com.ais.playbox.prod:id/channel_image"])[8]
 ${lbl_now_on}                           xpath=(//*[@resource-id="com.ais.playbox.prod:id/channel_title"])[1]
@@ -64,7 +64,6 @@ ${lbl_next}                             xpath=(//*[@resource-id="com.ais.playbox
 ${lbl_duration}                         id=com.ais.playbox.prod:id/channel_epg_time
 ${lbl_tv_program}                       xpath=(//*[@resource-id="com.ais.playbox.prod:id/channel_epg_title"])[1]
 ${lbl_next_tv_program}                  xpath=(//*[@resource-id="com.ais.playbox.prod:id/channel_epg_title"])[2]
-
 ${lbl_add_to_favorites}                 xpath=//*[@resource-id="com.ais.playbox.prod:id/tv_live_genre_name"][@text="${add_to_favorites}"]
 ${lbl_program_guide}                    xpath=//*[@resource-id="com.ais.playbox.prod:id/tv_live_genre_name"][@text="${program_guide}"]
 ${lbl_quality}                          xpath=//*[@resource-id="com.ais.playbox.prod:id/tv_live_genre_name"][@text="${quality}"]
@@ -80,8 +79,7 @@ ${lbl_documentaries}                    xpath=//*[@resource-id="com.ais.playbox.
 ${lbl_news_or_business}                 xpath=//*[@resource-id="com.ais.playbox.prod:id/tv_live_genre_name"][@text="${news_or_business}"]
 ${lbl_education_or_religion}            xpath=//*[@resource-id="com.ais.playbox.prod:id/tv_live_genre_name"][@text="${education_or_religion}"]
 ${lbl_shopping}                         xpath=//*[@resource-id="com.ais.playbox.prod:id/tv_live_genre_name"][@text="${shopping}"]
-
-# ${lbl_poster_movies}                    id=com.ais.playbox.prod:id/scale_frame
+# Movies Menu
 ${lbl_menu_promotions}                  xpath=//*[@resource-id="com.ais.playbox.prod:id/item_content_header_title"][@text="${promotions}"]
 ${lbl_menu_top_10}                      xpath=//*[@resource-id="com.ais.playbox.prod:id/item_content_header_title"][@text="${top_10_movies}"]
 ${lbl_menu_action}                      xpath=//*[@resource-id="com.ais.playbox.prod:id/item_content_header_title"][@text="${action_movies}"]
@@ -108,7 +106,7 @@ ${lbl_romance}                          xpath=//*[@resource-id="com.ais.playbox.
 # ${lbl_drama_thai}                       xpath=//*[@resource-id="com.ais.playbox.prod:id/row_header"][@text="${drama_thai_movies}"]
 ${lbl_comedy_thai}                      xpath=//*[@resource-id="com.ais.playbox.prod:id/row_header"][@text="${comedy_thai_movies}"]
 # ${lbl_horror_thai}                      xpath=//*[@resource-id="com.ais.playbox.prod:id/row_header"][@text="${horror_thai_movies}"]
-${lbl_western}                          xpath=//*[@resource-id="com.ais.playbox.prod:id/row_header"][@text="${western_movies}"]
+# ${lbl_western}                          xpath=//*[@resource-id="com.ais.playbox.prod:id/row_header"][@text="${western_movies}"]
 # ${lbl_chinese}                          xpath=//*[@resource-id="com.ais.playbox.prod:id/row_header"][@text="${chinese_movies}"]
 # ${pic_poster_top_10}                    accessibility_id=Top 10 Movies
 # ${pic_poster_action}                    accessibility_id=Action Movies
@@ -121,16 +119,12 @@ ${pic_poster_romance}                   accessibility_id=Romance Movies
 ${pic_poster_drama_thai}                accessibility_id=Drama Thai Movies       
 # ${pic_poster_comedy_thai}               accessibility_id=Comedy Thai Movies       
 # ${pic_poster_horror_thai}               accessibility_id=Horror Thai Movies       
-${pic_poster_western}                   accessibility_id=Western Movies       
+# ${pic_poster_western}                   accessibility_id=Western Movies       
 # ${pic_poster_chinese}                   accessibility_id=Chinese Movies
-${pic_poster_movies}                    xpath=(//*[@resource-id="com.ais.playbox.prod:id/card_movie_image"])[1]     # 1-8
-${pic_name_movies}                      xpath=(//*[@resource-id="com.ais.playbox.prod:id/card_movie_title"])[1]     # 10-17
-${pic_views_count}                      xpath=(//*[@resource-id="com.ais.playbox.prod:id/card_movie_views_count"])[1]   # 9-16
-
-${lbl_result_live}                      xpath=//*[@resource-id="com.ais.playbox.prod:id/row_header"][@text="${result_live}"]
-${lbl_result_movies}                    xpath=//*[@resource-id="com.ais.playbox.prod:id/row_header"][@text="${result_movies}"]
-${lbl_result_series}                    xpath=//*[@resource-id="com.ais.playbox.prod:id/row_header"][@text="${result_series}"]
-${lbl_result_episodes}                  xpath=//*[@resource-id="com.ais.playbox.prod:id/row_header"][@text="${result_episodes}"]
+${lbl_result_live}                      accessibility_id=Live
+${lbl_result_movies}                    accessibility_id=Movies
+${lbl_result_series}                    accessibility_id=Series
+${lbl_result_episodes}                  accessibility_id=Episodes
 ${pic_result_live}                      xpath=(//*[@resource-id="com.ais.playbox.prod:id/card_channel_image"])[1]
 ${pic_result_movies}                    xpath=(//*[@resource-id="com.ais.playbox.prod:id/card_movie_image"])[1]
 ${pic_result_series}                    xpath=(//*[@resource-id="com.ais.playbox.prod:id/card_movie_image"])[3]
@@ -140,4 +134,70 @@ ${lbl_result_movies_title}              xpath=(//*[@resource-id="com.ais.playbox
 ${lbl_result_series}                    xpath=(//*[@resource-id="com.ais.playbox.prod:id/card_movie_title"])[3]
 ${lbl_result_episodes}                  xpath=(//*[@resource-id="com.ais.playbox.prod:id/card_episode_title"])[1]
 ${lbl_nothing}                          id=com.ais.playbox.prod:id/nothing_was_found_title
-# ${row_content}    accessibility_id=Episodes
+# Home Page
+${lbl_home_world_class}                 xpath=//*[@resource-id="com.ais.playbox.prod:id/row_header"][@text="${home_world_class}"]
+${lbl_home_recommended}                 xpath=//*[@resource-id="com.ais.playbox.prod:id/row_header"][@text="${home_recommended}"]
+${lbl_home_live_sports}                 xpath=//*[@resource-id="com.ais.playbox.prod:id/row_header"][@text="${home_live_sports}"]
+${lbl_home_new_releases}                xpath=//*[@resource-id="com.ais.playbox.prod:id/row_header"][@text="${home_new_releases}"]
+${lbl_home_top_10}                      xpath=//*[@resource-id="com.ais.playbox.prod:id/row_header"][@text="${home_top_10}"]
+${lbl_home_aisplay}                     xpath=//*[@resource-id="com.ais.playbox.prod:id/row_header"][@text="${home_aisplay}"]
+${lbl_home_12345}                       xpath=//*[@resource-id="com.ais.playbox.prod:id/row_header"][@text="${home_12345}"]
+${lbl_home_power_of_us}                 xpath=//*[@resource-id="com.ais.playbox.prod:id/row_header"][@text="${home_power_of_us}"]
+${lbl_home_tero}                        xpath=//*[@resource-id="com.ais.playbox.prod:id/row_header"][@text="${home_tero}"]
+${lbl_home_gmm_grammy}                  xpath=//*[@resource-id="com.ais.playbox.prod:id/row_header"][@text="${home_gmm_grammy}"]
+${lbl_home_wake_music}                  xpath=//*[@resource-id="com.ais.playbox.prod:id/row_header"][@text="${home_wake_music}"]
+${lbl_home_rerun_football}              xpath=//*[@resource-id="com.ais.playbox.prod:id/row_header"][@text="${home_rerun_football}"]
+${lbl_home_take_me_out}                 xpath=//*[@resource-id="com.ais.playbox.prod:id/row_header"][@text="${home_take_me_out}"]
+${lbl_home_tv_series}                   xpath=//*[@resource-id="com.ais.playbox.prod:id/row_header"][@text="${home_tv_series}"]
+${lbl_home_conan}                       xpath=//*[@resource-id="com.ais.playbox.prod:id/row_header"][@text="${home_conan}"]
+${lbl_home_anime}                       xpath=//*[@resource-id="com.ais.playbox.prod:id/row_header"][@text="${home_anime}"]
+${lbl_home_popular_tv}                  xpath=//*[@resource-id="com.ais.playbox.prod:id/row_header"][@text="${home_popular_tv}"]
+${lbl_home_premium_tv}                  xpath=//*[@resource-id="com.ais.playbox.prod:id/row_header"][@text="${home_premium_tv}"]
+${lbl_home_premium}                     xpath=//*[@resource-id="com.ais.playbox.prod:id/row_header"][@text="${home_premium}"]
+${lbl_home_premium_rerun}               xpath=//*[@resource-id="com.ais.playbox.prod:id/row_header"][@text="${home_premium_rerun}"]
+${lbl_home_playnews}                    xpath=//*[@resource-id="com.ais.playbox.prod:id/row_header"][@text="${home_playnews}"]
+${lbl_home_thai_series}                 xpath=//*[@resource-id="com.ais.playbox.prod:id/row_header"][@text="${home_thai_series}"]
+${lbl_home_you_may_like}                xpath=//*[@resource-id="com.ais.playbox.prod:id/row_header"][@text="${home_you_may_like}"]
+${lbl_home_thai_movies}                 xpath=//*[@resource-id="com.ais.playbox.prod:id/row_header"][@text="${home_thai_movies}"]
+${lbl_home_action}                      xpath=//*[@resource-id="com.ais.playbox.prod:id/row_header"][@text="${home_action}"]
+${lbl_home_chinese}                     xpath=//*[@resource-id="com.ais.playbox.prod:id/row_header"][@text="${home_chinese}"]
+${lbl_home_idol}                        xpath=//*[@resource-id="com.ais.playbox.prod:id/row_header"][@text="${home_idol}"]
+${lbl_home_animation}                   xpath=//*[@resource-id="com.ais.playbox.prod:id/row_header"][@text="${home_animation}"]
+${lbl_home_cartoons}                    xpath=//*[@resource-id="com.ais.playbox.prod:id/row_header"][@text="${home_cartoons}"]
+${lbl_home_comedy}                      xpath=//*[@resource-id="com.ais.playbox.prod:id/row_header"][@text="${home_comedy}"]
+${lbl_home_drama}                       xpath=//*[@resource-id="com.ais.playbox.prod:id/row_header"][@text="${home_drama}"]
+${lbl_home_romance}                     xpath=//*[@resource-id="com.ais.playbox.prod:id/row_header"][@text="${home_romance}"]
+${lbl_home_thriller_horror}             xpath=//*[@resource-id="com.ais.playbox.prod:id/row_header"][@text="${home_thriller_horror}"]
+${lbl_home_concerts}                    xpath=//*[@resource-id="com.ais.playbox.prod:id/row_header"][@text="${home_concerts}"]
+${lbl_home_sports}                      xpath=//*[@resource-id="com.ais.playbox.prod:id/row_header"][@text="${home_sports}"]
+# TV Channels Menu
+${lbl_channels_popular_tv}              xpath=//*[@resource-id="com.ais.playbox.prod:id/item_content_header_title"][@text="${channels_popular_tv}"]
+${lbl_channels_digital_tv}              xpath=//*[@resource-id="com.ais.playbox.prod:id/item_content_header_title"][@text="${channels_digital_tv}"]
+${lbl_channels_premium_tv}              xpath=//*[@resource-id="com.ais.playbox.prod:id/item_content_header_title"][@text="${channels_premium_tv}"]
+${lbl_channels_movies}                  xpath=//*[@resource-id="com.ais.playbox.prod:id/item_content_header_title"][@text="${channels_movies}"]
+${lbl_channels_varieties}               xpath=//*[@resource-id="com.ais.playbox.prod:id/item_content_header_title"][@text="${channels_varieties}"]
+${lbl_channels_sports}                  xpath=//*[@resource-id="com.ais.playbox.prod:id/item_content_header_title"][@text="${channels_sports}"]
+${lbl_channels_kids_family}             xpath=//*[@resource-id="com.ais.playbox.prod:id/item_content_header_title"][@text="${channels_kids_family}"]
+${lbl_channels_documentaries}           xpath=//*[@resource-id="com.ais.playbox.prod:id/item_content_header_title"][@text="${channels_documentaries}"]
+${lbl_channels_news}                    xpath=//*[@resource-id="com.ais.playbox.prod:id/item_content_header_title"][@text="${channels_news}"]
+${lbl_channels_education}               xpath=//*[@resource-id="com.ais.playbox.prod:id/item_content_header_title"][@text="${channels_education}"]
+${lbl_channels_shopping}                xpath=//*[@resource-id="com.ais.playbox.prod:id/item_content_header_title"][@text="${channels_shopping}"]
+${lbl_channels_all}                     xpath=//*[@resource-id="com.ais.playbox.prod:id/item_content_header_title"][@text="${channels_all_channels}"]
+${lbl_channels_ais_promotion}           xpath=//*[@resource-id="com.ais.playbox.prod:id/item_content_header_title"][@text="${channels_ais_promotion}"]
+${pic_channels_popular_tv}              accessibility_id=Popular TV
+${pic_channels_digital_tv}              accessibility_id=Digital TV
+${pic_channels_premium_tv}              accessibility_id=Premium TV
+${pic_channels_movies}                  accessibility_id=Movies | Series
+${pic_channels_varieties}               accessibility_id=Varieties | Entertainment
+${pic_channels_sports}                  accessibility_id=Sports
+${pic_channels_kids_family}             accessibility_id=Kids | Family
+${pic_channels_documentaries}           accessibility_id=Documentaries
+${pic_channels_news}                    accessibility_id=News | Business
+${pic_channels_education}               accessibility_id=Education | Religion
+${pic_channels_shopping}                accessibility_id=Shopping
+${pic_channels_all}                     accessibility_id=All Channels
+${pic_channels_ais_promotion}           accessibility_id=AIS PROMOTION
+${pic_channels}                         xpath=//*[@resource-id="com.ais.playbox.prod:id/card_channel_image"]    # 1-5 and 6-10
+${lbl_channels}                         xpath=//*[@resource-id="com.ais.playbox.prod:id/card_channel_title"]    # 1-5 and 6-10
+${pic_ais_promotion}                    id=com.ais.playbox.prod:id/card_movie_image
+${lbl_ais_promotion}                    id=com.ais.playbox.prod:id/card_movie_title

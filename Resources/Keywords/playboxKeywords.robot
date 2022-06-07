@@ -86,7 +86,6 @@ Click Search Icon
 Click Search Button
     [Documentation]     Owner: Praew
     Press Keycode    66
-    # Press Keycode   ${txt_search}
 
 Select UI Language
     [Documentation]     Owner: Praew
@@ -143,7 +142,7 @@ Verify Movies
     Verify Element Is Visible           ${pic_nha_harn_the_series}
     Verify Element Is Visible           ${pic_bad_beauty}
 
-Verify App Position       # robot -d "020622" -v "LANG:EN" -v "images_dir:actual" "playbox.robot" 
+Verify App Position       # robot -d "060622" -v "LANG:EN" -v "images_dir:actual" "playbox.robot" 
     Open Eyes    AppiumLibrary
     Wait Element Is Visible       ${pic_netflix}
     Capture Element     ${pic_netflix}      tolerance=1    name=Netflix
@@ -176,18 +175,21 @@ Verify Left Panel
     [Documentation]     Owner: Praew
     Verify Element Is Visible    ${lbl_left_panel}
 
+Verify Right Panel
+    [Documentation]     Owner: Praew
+    Verify Element Is Visible    ${lbl_right_panel}
+
 Verify Highlighting Button
     [Documentation]     Owner: Praew
-    Verify Element Is Visible       ${btn_highlighting}
-    
+    [Arguments]         ${locator}
+    # Verify Element Is Visible       ${btn_highlighting}
+    Verify Element Attribute    ${locator}    ${attr_selected}    true
+
 Verify Poster Movies
     [Documentation]     Owner: Praew
     [Arguments]         ${locator_title}    ${locator_poster}
     Verify Element Is Visible       ${locator_title}
-    Verify Element Is Visible       ${locator_poster}
-    # Verify In Range     ${pic_poster_movies}        1       8
-    # Verify In Range     ${pic_name_movies}          1       8
-    # Verify In Range     ${pic_views_count}          1       8     
+    Verify Element Is Visible       ${locator_poster}     
 
 Verify Search Page
     [Documentation]     Owner: Praew
@@ -202,15 +204,15 @@ Verify Result Search Page
     Wait Element Is Visible     ${lbl_result_live}
     Loop For Verify Result Search          
 
-# Select Movies Category
-#     [Documentation]     Owner: Praew
-#     [Arguments]         ${locator}    @{list}
-#     Wait Until Element Is Visible       ${lbl_left_panel}      30s
-#     Loop For Select Menu       ${locator}    @{list}
+Verify Content Home Page
+    [Documentation]     Owner: Praew
+    Wait Element Is Visible     ${lbl_right_panel}
+    Loop For Verify  index_menu  list
 
 Verify Home Button
     [Documentation]     Owner: Praew
     Wait Element Is Visible  ${lbl_menu_home}
+
 # Wait Element
 Wait Element Is Visible
     [Documentation]     Owner: Praew
@@ -256,66 +258,45 @@ Loop For Verify Result Search
     [Documentation]     Owner: Praew     
     FOR     ${title}    IN    @{lbl_result_search}
         IF          '${title}' == '${lbl_result_live}'
-            ${status}     Run Keyword And Return Status      Page Should Not Contain Element     ${pic_result_live}
-            Loop For Check Status Result Search       ${status}       ${title}        ${pic_result_live}          ${lbl_result_live_title}        ${lbl_nothing}
+            ${status}     Run Keyword And Return Status      Page Should Contain Element    ${pic_result_live}
+            Loop For Check Status Result Search       ${status}       ${pic_result_live}        ${lbl_result_live_title}        ${lbl_nothing}
+            Click Down
         ELSE IF     '${title}' == '${lbl_result_movies}'
-            ${status}     Run Keyword And Return Status      Page Should Not Contain Element     ${pic_result_movies}
-            Loop For Check Status Result Search       ${status}       ${title}        ${pic_result_movies}        ${lbl_result_movies_title}      ${lbl_nothing}
+            ${status}     Run Keyword And Return Status      Page Should Contain Element    ${pic_result_movies}
+            Loop For Check Status Result Search       ${status}       ${pic_result_movies}      ${lbl_result_movies_title}      ${lbl_nothing}
+            Click Down
         ELSE IF     '${title}' == '${lbl_result_series}'
-            ${status}     Run Keyword And Return Status      Page Should Not Contain Element     ${pic_result_series}
-            Loop For Check Status Result Search       ${status}       ${title}        ${pic_result_series}        ${lbl_result_series}            ${lbl_nothing}
+            ${status}     Run Keyword And Return Status      Page Should Contain Element    ${pic_result_series}
+            Loop For Check Status Result Search       ${status}       ${pic_result_series}      ${lbl_result_series}            ${lbl_nothing}
+            Click Down
         ELSE IF     '${title}' == '${lbl_result_episodes}'
-            ${status}     Run Keyword And Return Status      Page Should Not Contain Element     ${pic_result_episodes}
-            Loop For Check Status Result Search       ${status}       ${title}        ${pic_result_episodes}      ${lbl_result_episodes}          ${lbl_nothing}
-        END     
+            ${status}     Run Keyword And Return Status      Page Should Contain Element    ${pic_result_episodes}
+            Loop For Check Status Result Search       ${status}       ${pic_result_episodes}    ${lbl_result_episodes}          ${lbl_nothing}
+        END
+        # Click Down     
     END
 
 Loop For Check Status Result Search
     [Documentation]     Owner: Praew
-    [Arguments]         ${status}    ${locator_title}    ${locator_pic}    ${locator_text}    ${locator_nothing}
-    Click Down
+    [Arguments]         ${status}    ${locator_pic}    ${locator_text}    ${locator_nothing}
     IF      "${status}" == "True"
-        Verify Element Is Visible       ${locator_nothing}
-    ELSE
-        Verify Element Is Visible       ${locator_title}
         Verify Element Is Visible       ${locator_pic}
         Verify Element Is Visible       ${locator_text}
-    END
-    # Click Down      
+    ELSE
+        Verify Element Is Visible       ${locator_nothing}
+    END      
 
 Loop For Select
     [Documentation]     Owner: Praew
     [Arguments]         ${locator}    @{list}
     FOR    ${name_menu}    IN    @{list}
         IF    '${name_menu}' == '${locator}'
+            # Verify Element Attribute    ${locator}    ${attr_selected}    true
             BREAK
         ELSE   
             Click Down
         END          
     END
-#     FOR    ${index}     ${name_menu}    IN ENUMERATE    @{list}
-#         IF      "${name_menu}" == "${locator}"
-#             Check List Poster       ${btn_highlighting}[${index}]   
-#             BREAK
-#         ELSE   
-#             Click Down
-#         END          
-#     END
-
-# Check List Poster
-#     [Documentation]     Owner: Praew
-#     [Arguments]     ${index}    
-#     Check List      ${index}    ${comedy_movies}    @{lbl_list_poster}
-
-# Check List
-#     [Documentation]     Owner: Praew
-#     [Arguments]         ${index}    ${expected}    @{list}         
-#     FOR     ${locator}    IN RANGE      @{list}
-#         ${text}     Get Element Attribute    ${locator}[${index}]       ${attr_content-desc}
-#         IF      "${text}" == "${expected}"
-#             BREAK
-#         END
-#     END
 
 # Input Text
 Input Text Box
@@ -351,9 +332,7 @@ Click Right
 
 Click Ok
     [Documentation]     Owner: Praew
-    [Arguments]         ${locator}
-    Wait Until Element Is Visible    ${locator}   
-    Press Keycode    23
+    Press Keycode    23     
 
 Click Category Button
     [Documentation]     Owner: Praew
@@ -386,7 +365,7 @@ Verify Element Attribute
     [Documentation]     Owner: Praew
     [Arguments]         ${locator}      ${attr_name}    ${match_pattern}
     Wait Element Is Visible     ${locator}
-    Element Attribute Should Match      ${locator}      ${attr_name}    ${match_pattern}
+    Element Attribute Should Match      ${locator}      ${attr_name}    ${match_pattern}    regexp = True
 
 Verify In Range
     [Documentation]     Owner: Praew

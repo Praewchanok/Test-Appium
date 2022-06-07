@@ -64,7 +64,52 @@ ${horror_thai_movies}               Horror Thai Movies
 ${western_movies}                   Western Movies
 ${chinese_movies}                   Chinese Movies
 
-${result_live}                      Live
-${result_movies}                    Movies
-${result_series}                    Series
-${result_episodes}                  Episodes
+${home_world_class}                 WORLD CLASS ENTERTAINMENT
+${home_recommended}                 Recommended
+${home_live_sports}                 LIVE Sports
+${home_new_releases}                New Releases
+${home_top_10}                      Top 10
+${home_aisplay}                     AISPLAY Originals
+${home_12345}                       ๑ ๒ ๓ ๔ ๕ I love you
+${home_power_of_us}                 Power of Us
+${home_tero}                        TERO Music Video
+${home_gmm_grammy}                  GMM Grammy
+${home_wake_music}                  Wake Music
+${home_rerun_football}              Rerun & Highlight Thai Football
+${home_take_me_out}                 Take Me Out Reality
+${home_tv_series}                   TV Series
+${home_conan}                       Detective Conan
+${home_anime}                       Anime
+${home_popular_tv}                  Popular TV
+${home_premium_tv}                  Premium TV
+${home_premium}                     Premium
+${home_premium_rerun}               Premium TV Rerun
+${home_playnews}                    PLAYNEWS
+${home_thai_series}                 Popular Thai Series
+${home_you_may_like}                You May Like
+${home_thai_movies}                 Thai Movies
+${home_action}                      Action Movies
+${home_chinese}                     Chinese Movies & Series
+${home_idol}                        IDOL
+${home_animation}                   Animation Movies
+${home_cartoons}                    Cartoons
+${home_comedy}                      Comedy Movies
+${home_drama}                       Drama Movies
+${home_romance}                     Romance Movies
+${home_thriller_horror}             Thriller & Horror Movies
+${home_concerts}                    Home of Concerts
+${home_sports}                      Sports
+
+${channels_popular_tv}              Popular TV
+${channels_digital_tv}              Digital TV
+${channels_premium_tv}              Premium TV
+${channels_movies}                  Movies | Series
+${channels_varieties}               Varieties | Entertainment
+${channels_sports}                  Sports
+${channels_kids_family}             Kids | Family
+${channels_documentaries}           Documentaries
+${channels_news}                    News | Business
+${channels_education}               Education | Religion
+${channels_shopping}                Shopping
+${channels_all_channels}            All Channels
+${channels_ais_promotion}           AIS PROMOTION                       
