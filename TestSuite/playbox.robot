@@ -1,4 +1,5 @@
 *** Settings ***
+Resource            ../Resources/Keywords/Keywords.robot
 Resource            ../Resources/Keywords/playboxKeywords.robot
 Resource            ../Resources/Variables/playboxVariables.robot
 Resource            ../Resources/Repositories/playboxRepositories.robot
@@ -29,9 +30,9 @@ Test_1_1_003 Verify Menu And Banner And App And Movies
     Verify App
     Verify Movies
 
-Test_1_1_004 Use RobotEyes For Verify App
-#     # [Setup]     Set Test Variable       ${images_dir}    actual
-    Verify App Position
+# Test_1_1_004 Use RobotEyes For Verify App
+# #     # [Setup]     Set Test Variable       ${images_dir}    actual
+#     Verify App Position
 
 Test_1_1_005 Click Category Button And Verify List Category
     Click Live TV
@@ -41,29 +42,33 @@ Test_1_1_005 Click Category Button And Verify List Category
     Click Back
     Verify Live TV Page
 
-Test_1_1_006 Verify Home Page
-    Verify Left Panel
-    Verify Menu
-    Verify Highlighting Button
-    Verify Banner
-    Verify App Position
-    Verify Movies
+# Test_1_1_006 Verify Home Page
+#     Verify Left Panel
+#     Verify Menu
+#     Verify Highlighting Button
+#     Verify Banner
+#     Verify App Position
+#     Verify Movies
 
 Test_1_1_007 Click Right Button In Movise Page And Verify Movies Category
-    Click Movies Menu
-    Verify Movies Category
+    # Click Movies Menu
+    Click Menu              ${lbl_menu_movies}        @{lbl_list_menu}
+    Verify Menu In Page     @{lbl_list_movies} 
+    # Verify Movies Category
     Click Right
-    Verify Poster Movies    ${lbl_comedy_thai}    ${pic_poster_drama_thai}      
+    Verify Poster Movies    ${lbl_horror_thai}    ${pic_poster_horror_thai}      
 
 Test_1_1_008 Click Left Button In Movise Page And Verify Highlighting Button
-    Click Movies Menu
+    # Click Movies Menu
+    Click Menu              ${lbl_menu_movies}        @{lbl_list_menu} 
     Verify Left Panel
     Click Left
     Click Down
     Verify Highlighting Button      ${lbl_menu_promotions}
 
 Test_1_1_009 Click Ok Button In Movies Page
-    Click Movies Menu
+    # Click Movies Menu
+    Click Menu              ${lbl_menu_movies}        @{lbl_list_menu} 
     Click Left
     Click Down
     Select Type Movies      ${lbl_menu_romance}
@@ -95,6 +100,44 @@ Test_1_1_013 Click Back From The Search Page
     Verify Home Button
 
 Test_1_1_014 Verify The Content On Right Panel
-    Verify Left Panel
+    Verify Right Panel
     Click Right
     Verify Content Home Page
+
+Test_1_1_015 Verify Banner On Right Panel
+    Verify Right Panel
+    Click Right
+    Verify To The Right    ${pic_banner}     1       10
+    Verify To The Left     ${pic_banner}     1       10
+
+Test_1_1_016 Click Live TV And Verify Live TV Page
+    # Click Live TV Menu
+    # Verify Live TV Page
+    Click Menu              ${lbl_menu_live_tv}        @{lbl_list_menu}
+    Verify Live TV Page
+
+Test_1_1_017 Click Back From Live TV Page
+    # Click Live TV
+    # Click Back
+    # Verify Home Menu
+    Click Menu              ${lbl_menu_live_tv}        @{lbl_list_menu} 
+    Click Back
+    Verify Menu Button      ${lbl_menu_live_tv}
+
+Test_1_1_018 Click TV Channels And Verify TV Channels Page
+    Click Menu              ${lbl_menu_tv_channels}     @{lbl_list_menu}
+    Verify Menu In Page     @{list_tv_channels}
+
+Test_1_1_019 Click Back From TV Channels Page
+    Click Menu              ${lbl_menu_tv_channels}     @{lbl_list_menu}
+    Click Back
+    Verify Menu Button      ${lbl_menu_tv_channels}
+
+Test_1_1_020 Click AIS 360 Channel And Verify AIS TV Channel Page
+    Click Menu              ${lbl_menu_360_channel}     @{lbl_list_menu}     
+    Verify AIS 360 Channel Page
+
+Test_1_1_021 Click Back From AIS 360 Channel Page
+    Click Menu              ${lbl_menu_360_channel}     @{lbl_list_menu}     
+    Click Back
+    Verify Menu Button      ${lbl_menu_360_channel}

@@ -1,6 +1,7 @@
 *** Settings ***
 Library         AppiumLibrary
 Library         RobotEyes
+Resource        ./Keywords.robot
 Resource        ../Repositories/playboxRepositories.robot
 Resource        ../Variables/playboxVariables.robot
 Resource        ../Localized/${LANG}/playboxLocalized.robot
@@ -72,11 +73,15 @@ Click Player UI Timeout
     [Documentation]     Owner: Praew
     Remote Click Element       ${lbl_player_ui_timeout}
 
-Click Movies Menu
+# Click Movies Menu
+#     [Documentation]     Owner: Praew
+#     # Remote Click Element        ${lbl_menu_movies}
+#     Wait Element Is Visible     ${lbl_left_panel}
+#     # Loop For Find Menu          5      @{lbl_list_menu}
+#     Loop For Find Menu          ${lbl_menu_movies}      @{lbl_list_menu}
+
+Click TV Channels Menu
     [Documentation]     Owner: Praew
-    # Remote Click Element        ${lbl_menu_movies}
-    Wait Element Is Visible     ${lbl_left_panel}
-    Loop For Find Menu          5      @{lbl_list_menu}
 
 Click Search Icon
     [Documentation]     Owner: Praew
@@ -120,13 +125,31 @@ Verify UI Timeout And Player UI Timeout
 Verify Menu
     [Documentation]     Owner: Praew
     Wait Element Is Visible     ${lbl_menu_home}
-    Loop For Verify     22      @{lbl_list_menu}
+    # Loop For Verify     22      @{lbl_list_menu}
+    Loop For Verify     @{lbl_list_menu}
 
 Verify Banner
     [Documentation]     Owner: Praew
     Verify Element Is Visible       ${pic_banner_one}
     Verify Element Is Visible       ${pic_banner_two}
     Verify Element Is Visible       ${pic_banner_three}
+
+Verify To The Right
+    [Documentation]     Owner: Praew
+    [Arguments]         ${locator}      ${start}    ${end}
+    FOR     ${index}    IN RANGE    ${start}    ${end}
+        Log     ${locator}[${index}]
+        Click Right
+    END
+
+Verify To The Left
+    [Documentation]     Owner: Praew
+    [Arguments]         ${locator}      ${start}    ${end}      
+    ${index}    Set Variable    ${end}
+    FOR     ${index-1}    IN RANGE    ${start}    ${end}
+        Log     ${locator}[${index-1}]
+        Click Left
+    END
 
 Verify App
     [Documentation]     Owner: Praew
@@ -142,7 +165,7 @@ Verify Movies
     Verify Element Is Visible           ${pic_nha_harn_the_series}
     Verify Element Is Visible           ${pic_bad_beauty}
 
-Verify App Position       # robot -d "060622" -v "LANG:EN" -v "images_dir:actual" "playbox.robot" 
+Verify App Position       # robot -d "070622" -v "LANG:EN" -v "images_dir:actual" "playbox.robot" 
     Open Eyes    AppiumLibrary
     Wait Element Is Visible       ${pic_netflix}
     Capture Element     ${pic_netflix}      tolerance=1    name=Netflix
@@ -151,7 +174,7 @@ Verify App Position       # robot -d "060622" -v "LANG:EN" -v "images_dir:actual
     Capture Element     ${pic_viu}          tolerance=1    name=Viu
     Compare Images
 
-Verify Live TV Page
+Verify Live TV Page     # Use
     [Documentation]     Owner: Praew
     Verify Element Is Visible    ${lbl_channel_number}
     Verify Element Is Visible    ${pic_channel_logo}
@@ -164,12 +187,16 @@ Verify Live TV Page
 Verify Category
     [Documentation]     Owner: Praew
     Go To Top           ${lbl_quality}
-    Loop For Verify     14      @{lbl_list_live_tv}
+    # Loop For Verify     14      @{lbl_list_live_tv}
+    Loop For Verify     @{lbl_list_live_tv}
 
-Verify Movies Category
-    [Documentation]     Owner: Praew
-    Wait Element Is Visible     ${lbl_menu_promotions}
-    Loop For Verify     12      @{lbl_list_movies}
+# Verify Movies Category
+#     [Documentation]     Owner: Praew
+#     Wait Element Is Visible     ${lbl_menu_promotions}
+#     # Loop For Verify     12      @{lbl_list_movies}
+#     # Loop For Verify             ${lbl_menu_chinese}     @{lbl_list_movies}
+#     Loop For Verify     @{lbl_list_movies}
+
 
 Verify Left Panel
     [Documentation]     Owner: Praew
@@ -206,18 +233,25 @@ Verify Result Search Page
 
 Verify Content Home Page
     [Documentation]     Owner: Praew
-    Wait Element Is Visible     ${lbl_right_panel}
-    Loop For Verify  index_menu  list
+    # Loop For Verify     33      @{list_home_content}
+    # Loop For Verify     ${lbl_home_sports}      @{list_home_content}
+    Loop For Verify     @{list_home_content}
+
+# Verify TV Channels Page
+#     [Documentation]     Owner: Praew
+#     Wait Element Is Visible     ${lbl_left_panel}
+#     Loop For Verify     ${lbl_channels_ais_promotion}    @{list_tv_channels}        
+
+Verify AIS 360 Channel Page
+    [Documentation]     Owner: Praew
+    Verify Element Is Visible       ${lbl_page_ais_360}
+    Verify Element Is Visible       ${pic_list_ais_360}
+    Verify To The Right             ${pic_poster}    1    3
+    Verify To The Right             ${lbl_poster}    1    3
 
 Verify Home Button
     [Documentation]     Owner: Praew
-    Wait Element Is Visible  ${lbl_menu_home}
-
-# Wait Element
-Wait Element Is Visible
-    [Documentation]     Owner: Praew
-    [Arguments]         ${locator}
-    Wait Until Element Is Visible       ${locator}      30s
+    Wait Element Is Visible     ${lbl_menu_home}
 
 # Go To
 Go To Home Page
@@ -234,10 +268,19 @@ Go To Top
 # Loop
 Loop For Find Menu
     [Documentation]     Owner: Praew
-    [Arguments]         ${index_menu}      @{list}
-    FOR    ${index}    ${menu}    IN ENUMERATE    @{list}
-        IF    "${index}" == "${index_menu}"
-            Remote Click Element    ${menu}
+    # [Arguments]         ${index_menu}      @{list}
+    # FOR    ${index}    ${menu}    IN ENUMERATE    @{list}
+    #     IF    "${index}" == "${index_menu}"
+    #         Remote Click Element    ${menu}
+    #         BREAK
+    #     ELSE   
+    #         Click Down
+    #     END          
+    # END
+    [Arguments]         ${locator}      @{list}
+    FOR    ${name}    IN    @{list}
+        IF    '${name}' == '${locator}'
+            Remote Click Element    ${locator}
             BREAK
         ELSE   
             Click Down
@@ -246,37 +289,51 @@ Loop For Find Menu
     
 Loop For Verify
     [Documentation]     Owner: Praew
-    [Arguments]         ${index_menu}    @{list}
-    FOR    ${index}     ${menu}    IN ENUMERATE    @{list}
-        Verify Element Is Visible       ${menu}
-        IF    ${index} != ${index_menu}
-            Click Down
-        END           
-    END
+    # [Arguments]         ${index_menu}    @{list}
+    # FOR    ${index}     ${menu}    IN ENUMERATE    @{list}
+    #     Verify Element Is Visible       ${menu}
+    #     IF    ${index} != ${index_menu}
+    #         Click Down
+    #     END           
+    # END
+    # [Arguments]         ${locator}    @{list}
+    # FOR    ${text}    IN    @{list}
+    #     Verify Element Is Visible       ${text}
+    #     IF    '${text}' != '${locator}'
+    #         Click Down
+    #     END           
+    # END
+    [Arguments]         @{list}
+    ${length}    Get Length     ${list}
+    FOR    ${index}    ${locator}    IN ENUMERATE    @{list}
+        Verify Element Is Visible    ${locator}
+        IF      ${index} != ${length}
+                Click Down
+        END
+    END 
 
 Loop For Verify Result Search
     [Documentation]     Owner: Praew     
     FOR     ${title}    IN    @{lbl_result_search}
         IF          '${title}' == '${lbl_result_live}'
             ${status}     Run Keyword And Return Status      Page Should Contain Element    ${pic_result_live}
-            Loop For Check Status Result Search       ${status}       ${pic_result_live}        ${lbl_result_live_title}        ${lbl_nothing}
+            Check Status Result Search    ${status}    ${pic_result_live}        ${lbl_result_live_title}      ${lbl_nothing}
             Click Down
         ELSE IF     '${title}' == '${lbl_result_movies}'
             ${status}     Run Keyword And Return Status      Page Should Contain Element    ${pic_result_movies}
-            Loop For Check Status Result Search       ${status}       ${pic_result_movies}      ${lbl_result_movies_title}      ${lbl_nothing}
+            Check Status Result Search    ${status}    ${pic_result_movies}      ${lbl_result_movies_title}    ${lbl_nothing}
             Click Down
         ELSE IF     '${title}' == '${lbl_result_series}'
             ${status}     Run Keyword And Return Status      Page Should Contain Element    ${pic_result_series}
-            Loop For Check Status Result Search       ${status}       ${pic_result_series}      ${lbl_result_series}            ${lbl_nothing}
+            Check Status Result Search    ${status}    ${pic_result_series}      ${lbl_result_series}          ${lbl_nothing}
             Click Down
         ELSE IF     '${title}' == '${lbl_result_episodes}'
             ${status}     Run Keyword And Return Status      Page Should Contain Element    ${pic_result_episodes}
-            Loop For Check Status Result Search       ${status}       ${pic_result_episodes}    ${lbl_result_episodes}          ${lbl_nothing}
-        END
-        # Click Down     
+            Check Status Result Search    ${status}    ${pic_result_episodes}    ${lbl_result_episodes}        ${lbl_nothing}
+        END    
     END
 
-Loop For Check Status Result Search
+Check Status Result Search
     [Documentation]     Owner: Praew
     [Arguments]         ${status}    ${locator_pic}    ${locator_text}    ${locator_nothing}
     IF      "${status}" == "True"
@@ -289,87 +346,29 @@ Loop For Check Status Result Search
 Loop For Select
     [Documentation]     Owner: Praew
     [Arguments]         ${locator}    @{list}
-    FOR    ${name_menu}    IN    @{list}
-        IF    '${name_menu}' == '${locator}'
-            # Verify Element Attribute    ${locator}    ${attr_selected}    true
+    FOR    ${name}    IN    @{list}
+        IF    '${name}' == '${locator}'
             BREAK
         ELSE   
             Click Down
         END          
-    END
+    END                  
 
-# Input Text
-Input Text Box
+# Click Element
+Click Menu
     [Documentation]     Owner: Praew
-    [Arguments]         ${locator}      ${text}
-    Wait Until Element Is Visible       ${locator}
-    Input Text          ${locator}      ${text}
+    [Arguments]         ${locator}    @{list}
+    Wait Element Is Visible     ${lbl_left_panel}
+    Loop For Find Menu      ${locator}    @{list}
 
-# Click Button
-Click Home
+# Verify   
+Verify Menu In Page
     [Documentation]     Owner: Praew
-    Press Keycode    3
+    [Arguments]         @{list}
+    Wait Element Is Visible     ${lbl_left_panel}
+    Loop For Verify     @{list}
 
-Click Back
-    [Documentation]     Owner: Praew
-    Press Keycode    4
-
-Click Up
-    [Documentation]     Owner: Praew
-    Press Keycode    19
-
-Click Down
-    [Documentation]     Owner: Praew
-    Press Keycode    20
-
-Click Left
-    [Documentation]     Owner: Praew
-    Press Keycode    21
-
-Click Right
-    [Documentation]     Owner: Praew
-    Press Keycode    22
-
-Click Ok
-    [Documentation]     Owner: Praew
-    Press Keycode    23     
-
-Click Category Button
-    [Documentation]     Owner: Praew
-    Press Keycode    82
-
-Click Live TV
-    [Documentation]     Owner: Praew
-    Press Keycode    133
-
-Remote Click Element
+Verify Menu Button
     [Documentation]     Owner: Praew
     [Arguments]         ${locator}
-    Wait Element Is Visible       ${locator}
-    Click Element       ${locator}              
-
-# Verify
-Verify Element Is Visible
-    [Documentation]     Owner: Praew
-    [Arguments]         ${locator}
-    Wait Element Is Visible         ${locator}
-    Element Should Be Visible       ${locator}
-
-Verify Element Text
-    [Documentation]     Owner: Praew
-    [Arguments]         ${locator}      ${expected}
-    Wait Element Is Visible     ${locator}
-    Element Text Should Be      ${locator}      ${expected}   
-
-Verify Element Attribute
-    [Documentation]     Owner: Praew
-    [Arguments]         ${locator}      ${attr_name}    ${match_pattern}
-    Wait Element Is Visible     ${locator}
-    Element Attribute Should Match      ${locator}      ${attr_name}    ${match_pattern}    regexp = True
-
-Verify In Range
-    [Documentation]     Owner: Praew
-    [Arguments]         ${locator}      ${start}    ${end}
-    FOR     ${locator}    IN RANGE    ${start}    ${end}
-        Verify Element Is Visible       ${locator}
-    END
+    Verify Element Attribute    ${locator}    ${attr_selected}    true

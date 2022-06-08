@@ -112,4 +112,4 @@ ${channels_news}                    News | Business
 ${channels_education}               Education | Religion
 ${channels_shopping}                Shopping
 ${channels_all_channels}            All Channels
-${channels_ais_promotion}           AIS PROMOTION                       
+${channels_ais_promotion}           AIS PROMOTION

@@ -5,12 +5,12 @@ Resource        ../Repositories/playboxRepositories.robot
 ${remote_url}           http://localhost:4723/wd/hub
 ${platformName}         Android
 ${platformVersion}      7.1.2
-${deviceName}           192.168.1.36:6555
+${deviceName}           192.168.1.37:6555
 ${automationName}       UiAutomator2
 ${appActivity}          net.vimmi.settopbox.ui.main.MainActivity
 ${appPackage}           com.ais.playbox.prod
 ${noReset}              true
-${udid}                 192.168.1.36:6555
+${udid}                 192.168.1.37:6555
 
 ${attr_content-desc}    content-desc
 ${attr_selected}        selected        # true or false
@@ -34,10 +34,14 @@ ${attr_selected}        selected        # true or false
 # ...                         ${lbl_animation}    ${lbl_action_thai}    ${lbl_drama_thai}     ${lbl_comedy_thai}   ${lbl_horror_thai}    ${lbl_western}    ${lbl_chinese}
 @{lbl_result_search}        ${lbl_result_live}    ${lbl_result_movies}    ${lbl_result_series}    ${lbl_result_episodes}
 @{lbl_list_home}
-${lbl_home_world_class}     ${lbl_home_recommended}         ${lbl_home_live_sports}         ${lbl_home_new_releases}    ${lbl_home_top_10}          ${lbl_home_aisplay}
-...                         ${lbl_home_12345}               ${lbl_home_power_of_us}         ${lbl_home_tero}            ${lbl_home_gmm_grammy}      ${lbl_home_wake_music}
-...                         ${lbl_home_rerun_football}      ${lbl_home_take_me_out}         ${lbl_home_tv_series}       ${lbl_home_conan}           ${lbl_home_anime}
-...                         ${lbl_home_popular_tv}          ${lbl_home_premium_tv}          ${lbl_home_premium}         ${lbl_home_premium_rerun}   ${lbl_home_playnews}
-...                         ${lbl_home_thai_series}         ${lbl_home_you_may_like}        ${lbl_home_thai_movies}     ${lbl_home_action}          ${lbl_home_chinese}
-...                         ${lbl_home_idol}                ${lbl_home_animation}           ${lbl_home_cartoons}        ${lbl_home_comedy}          ${lbl_home_drama}
-...                         ${lbl_home_romance}             ${lbl_home_thriller_horror}     ${lbl_home_concerts}        ${lbl_home_sports}
+@{list_home_content}        ${lbl_home_world_class}     ${lbl_home_recommended}         ${lbl_home_live_sports}         ${lbl_home_new_releases}    ${lbl_home_top_10}
+...                         ${lbl_home_aisplay}         ${lbl_home_12345}               ${lbl_home_power_of_us}         ${lbl_home_tero}            ${lbl_home_gmm_grammy}
+...                         ${lbl_home_wake_music}      ${lbl_home_rerun_football}      ${lbl_home_take_me_out}         ${lbl_home_tv_series}       ${lbl_home_conan}
+...                         ${lbl_home_anime}           ${lbl_home_popular_tv}          ${lbl_home_premium_tv}          ${lbl_home_premium}         ${lbl_home_premium_rerun}
+...                         ${lbl_home_playnews}        ${lbl_home_thai_series}         ${lbl_home_you_may_like}        ${lbl_home_thai_movies}     ${lbl_home_action}
+...                         ${lbl_home_chinese}         ${lbl_home_idol}                ${lbl_home_animation}           ${lbl_home_cartoons}        ${lbl_home_comedy}
+...                         ${lbl_home_drama}           ${lbl_home_romance}             ${lbl_home_thriller_horror}     ${lbl_home_concerts}        ${lbl_home_sports}
+@{list_tv_channels}     ${lbl_channels_popular_tv}      ${lbl_channels_digital_tv}      ${lbl_channels_premium_tv}      ${lbl_channels_movies}      
+...                     ${lbl_channels_varieties}       ${lbl_channels_sports}          ${lbl_channels_kids_family}     ${lbl_channels_documentaries}
+...                     ${lbl_channels_news}            ${lbl_channels_education}       ${lbl_channels_shopping}        ${lbl_channels_all}
+...                     ${lbl_channels_ais_promotion}

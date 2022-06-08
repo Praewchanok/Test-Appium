@@ -7,7 +7,7 @@ ${txt_search}                           id=com.ais.playbox.prod:id/lb_search_tex
 ${pic_keyboard}                         id=com.ais.playbox.prod:id/lb_results_frame
 # ${lbl_navigation_menu}                  id=com.ais.playbox.prod:id/browse_headers
 ${lbl_left_panel}                       id=com.ais.playbox.prod:id/browse_headers
-${lbl_right_panel}                      id=idcom.ais.playbox.prod:id/container_list
+${lbl_right_panel}                      id=com.ais.playbox.prod:id/container_list
 ${btn_highlighting}                     xpath=//*[@class="android.widget.LinearLayout"][@focused="true"]
 # Home Menu
 ${lbl_menu_home}                        xpath=//*[@resource-id="com.ais.playbox.prod:id/header_label"][@text="${home}"]
@@ -46,6 +46,7 @@ ${lbl_player_ui_timeout}                xpath=//*[@resource-id="android:id/title
 ${lbl_player_ui_timeout_never}          xpath=//*[@resource-id="android:id/summary"][@text="${timeout_never}"]
 ${lbl_timeout_never}                    xpath=//*[@resource-id="android:id/title"][@text="${timeout_never}"]
 
+${pic_banner}                           xpath=(//*[@resource-id="com.ais.playbox.prod:id/card_banner_image"])
 ${pic_banner_one}                       xpath=(//*[@resource-id="com.ais.playbox.prod:id/card_banner_image"])[1]
 ${pic_banner_two}                       xpath=(//*[@resource-id="com.ais.playbox.prod:id/card_banner_image"])[2]
 ${pic_banner_three}                     xpath=(//*[@resource-id="com.ais.playbox.prod:id/card_banner_image"])[3]
@@ -104,8 +105,8 @@ ${lbl_romance}                          xpath=//*[@resource-id="com.ais.playbox.
 # ${lbl_animation}                        xpath=//*[@resource-id="com.ais.playbox.prod:id/row_header"][@text="${animation_movies}"]
 # ${lbl_action_thai}                      xpath=//*[@resource-id="com.ais.playbox.prod:id/row_header"][@text="${action_thai_movies}"]
 # ${lbl_drama_thai}                       xpath=//*[@resource-id="com.ais.playbox.prod:id/row_header"][@text="${drama_thai_movies}"]
-${lbl_comedy_thai}                      xpath=//*[@resource-id="com.ais.playbox.prod:id/row_header"][@text="${comedy_thai_movies}"]
-# ${lbl_horror_thai}                      xpath=//*[@resource-id="com.ais.playbox.prod:id/row_header"][@text="${horror_thai_movies}"]
+# ${lbl_comedy_thai}                      xpath=//*[@resource-id="com.ais.playbox.prod:id/row_header"][@text="${comedy_thai_movies}"]
+${lbl_horror_thai}                      xpath=//*[@resource-id="com.ais.playbox.prod:id/row_header"][@text="${horror_thai_movies}"]
 # ${lbl_western}                          xpath=//*[@resource-id="com.ais.playbox.prod:id/row_header"][@text="${western_movies}"]
 # ${lbl_chinese}                          xpath=//*[@resource-id="com.ais.playbox.prod:id/row_header"][@text="${chinese_movies}"]
 # ${pic_poster_top_10}                    accessibility_id=Top 10 Movies
@@ -116,9 +117,9 @@ ${pic_poster_romance}                   accessibility_id=Romance Movies
 # ${pic_poster_thriller_and_horror}       accessibility_id=Thriller & Horror Movies       
 # ${pic_poster_animation}                 accessibility_id=Animation Movies       
 # ${pic_poster_action_thai}               accessibility_id=Action Thai Movies       
-${pic_poster_drama_thai}                accessibility_id=Drama Thai Movies       
+# ${pic_poster_drama_thai}                accessibility_id=Drama Thai Movies       
 # ${pic_poster_comedy_thai}               accessibility_id=Comedy Thai Movies       
-# ${pic_poster_horror_thai}               accessibility_id=Horror Thai Movies       
+${pic_poster_horror_thai}               accessibility_id=Horror Thai Movies       
 # ${pic_poster_western}                   accessibility_id=Western Movies       
 # ${pic_poster_chinese}                   accessibility_id=Chinese Movies
 ${lbl_result_live}                      accessibility_id=Live
@@ -201,3 +202,8 @@ ${pic_channels}                         xpath=//*[@resource-id="com.ais.playbox.
 ${lbl_channels}                         xpath=//*[@resource-id="com.ais.playbox.prod:id/card_channel_title"]    # 1-5 and 6-10
 ${pic_ais_promotion}                    id=com.ais.playbox.prod:id/card_movie_image
 ${lbl_ais_promotion}                    id=com.ais.playbox.prod:id/card_movie_title
+
+${lbl_page_ais_360}                     id=com.ais.playbox.prod:id/item_content_header_title
+${pic_list_ais_360}                     accessibility_id=AIS 360 CHANNEL
+${pic_poster}                           xpath=(//*[@resource-id="com.ais.playbox.prod:id/card_movie_image"])    # 1-3
+${lbl_poster}                           xpath=(//*[@resource-id="com.ais.playbox.prod:id/card_movie_title"])    # 1-3
