@@ -55,7 +55,7 @@ Open Playbox And Check Language
 Click Settings Menu
     [Documentation]     Owner: Praew
     Wait Element Is Visible     ${lbl_left_panel}
-    Loop For Find Menu          22      @{lbl_list_menu}                    
+    Loop For Find Menu          22      @{list_menu}                    
 
 Click Preferences Menu
     [Documentation]     Owner: Praew
@@ -73,24 +73,27 @@ Click Player UI Timeout
     [Documentation]     Owner: Praew
     Remote Click Element       ${lbl_player_ui_timeout}
 
-# Click Movies Menu
-#     [Documentation]     Owner: Praew
-#     # Remote Click Element        ${lbl_menu_movies}
-#     Wait Element Is Visible     ${lbl_left_panel}
-#     # Loop For Find Menu          5      @{lbl_list_menu}
-#     Loop For Find Menu          ${lbl_menu_movies}      @{lbl_list_menu}
-
-Click TV Channels Menu
-    [Documentation]     Owner: Praew
-
+# Click Menu Button
 Click Search Icon
     [Documentation]     Owner: Praew
     Click Left
     Remote Click Element        ${icn_search}        
 
-Click Search Button
+Click Movive Menu
     [Documentation]     Owner: Praew
-    Press Keycode    66
+    Click Menu          ${lbl_menu_movies}          @{list_menu}
+
+Click Live TV Menu
+    [Documentation]     Owner: Praew
+    Click Menu          ${lbl_menu_live_tv}         @{list_menu}
+
+Click TV Channels Menu
+    [Documentation]     Owner: Praew
+    Click Menu          ${lbl_menu_tv_channels}     @{list_menu}  
+
+Click AIS 360 Channel Menu
+    [Documentation]     Owner: Praew
+    Click Menu          ${lbl_menu_360_channel}     @{list_menu}     
 
 Select UI Language
     [Documentation]     Owner: Praew
@@ -109,7 +112,21 @@ Select Timeout
 Select Type Movies
     [Documentation]     Owner: Praew
     [Arguments]         ${locator}
-    Loop For Select     ${locator}      @{lbl_list_movies}      
+    Loop For Select     ${locator}      @{list_movies}
+
+# Select 
+Select Type Content
+    [Documentation]     Owner: Praew
+    [Arguments]         ${locator}      @{list}
+    Loop For Select     ${locator}      @{list}
+
+Select Tero Music Video
+    [Documentation]     Owner: Praew
+    Select Type Content     ${lbl_home_tero}    @{list_home_content}
+
+Verify Poster Tero Music Video
+    [Documentation]     Owner: Praew
+    Verify To The Right     ${pic_home_poster}      1       5
 
 Verify UI Language
     [Documentation]     Owner: Praew
@@ -125,8 +142,8 @@ Verify UI Timeout And Player UI Timeout
 Verify Menu
     [Documentation]     Owner: Praew
     Wait Element Is Visible     ${lbl_menu_home}
-    # Loop For Verify     22      @{lbl_list_menu}
-    Loop For Verify     @{lbl_list_menu}
+    # Loop For Verify     22      @{list_menu}
+    Loop For Verify     @{list_menu}
 
 Verify Banner
     [Documentation]     Owner: Praew
@@ -138,7 +155,8 @@ Verify To The Right
     [Documentation]     Owner: Praew
     [Arguments]         ${locator}      ${start}    ${end}
     FOR     ${index}    IN RANGE    ${start}    ${end}
-        Log     ${locator}[${index}]
+        Verify Poster And Banner  ${locator}[${index}]
+        # Log     ${locator}[${index}]
         Click Right
     END
 
@@ -174,30 +192,13 @@ Verify App Position       # robot -d "070622" -v "LANG:EN" -v "images_dir:actual
     Capture Element     ${pic_viu}          tolerance=1    name=Viu
     Compare Images
 
-Verify Live TV Page     # Use
+Verify Poster Movies
     [Documentation]     Owner: Praew
-    Verify Element Is Visible    ${lbl_channel_number}
-    Verify Element Is Visible    ${pic_channel_logo}
-    Verify Element Is Visible    ${lbl_now_on}
-    Verify Element Is Visible    ${lbl_next}
-    Verify Element Is Visible    ${lbl_duration}
-    Verify Element Is Visible    ${lbl_tv_program}
-    Verify Element Is Visible    ${lbl_next_tv_program}
+    [Arguments]         ${locator_title}    ${locator_poster}
+    Verify Element Is Visible       ${locator_title}
+    Verify Element Is Visible       ${locator_poster}            
 
-Verify Category
-    [Documentation]     Owner: Praew
-    Go To Top           ${lbl_quality}
-    # Loop For Verify     14      @{lbl_list_live_tv}
-    Loop For Verify     @{lbl_list_live_tv}
-
-# Verify Movies Category
-#     [Documentation]     Owner: Praew
-#     Wait Element Is Visible     ${lbl_menu_promotions}
-#     # Loop For Verify     12      @{lbl_list_movies}
-#     # Loop For Verify             ${lbl_menu_chinese}     @{lbl_list_movies}
-#     Loop For Verify     @{lbl_list_movies}
-
-
+# Verify Content Page
 Verify Left Panel
     [Documentation]     Owner: Praew
     Verify Element Is Visible    ${lbl_left_panel}
@@ -206,17 +207,9 @@ Verify Right Panel
     [Documentation]     Owner: Praew
     Verify Element Is Visible    ${lbl_right_panel}
 
-Verify Highlighting Button
+Verify Content Home Page
     [Documentation]     Owner: Praew
-    [Arguments]         ${locator}
-    # Verify Element Is Visible       ${btn_highlighting}
-    Verify Element Attribute    ${locator}    ${attr_selected}    true
-
-Verify Poster Movies
-    [Documentation]     Owner: Praew
-    [Arguments]         ${locator_title}    ${locator_poster}
-    Verify Element Is Visible       ${locator_title}
-    Verify Element Is Visible       ${locator_poster}     
+    Loop For Verify     @{list_home_content}        
 
 Verify Search Page
     [Documentation]     Owner: Praew
@@ -229,18 +222,17 @@ Verify Search Page
 Verify Result Search Page
     [Documentation]     Owner: Praew
     Wait Element Is Visible     ${lbl_result_live}
-    Loop For Verify Result Search          
+    Loop For Verify Result Search
 
-Verify Content Home Page
+Verify Live TV Page     # Use
     [Documentation]     Owner: Praew
-    # Loop For Verify     33      @{list_home_content}
-    # Loop For Verify     ${lbl_home_sports}      @{list_home_content}
-    Loop For Verify     @{list_home_content}
-
-# Verify TV Channels Page
-#     [Documentation]     Owner: Praew
-#     Wait Element Is Visible     ${lbl_left_panel}
-#     Loop For Verify     ${lbl_channels_ais_promotion}    @{list_tv_channels}        
+    Verify Element Is Visible    ${lbl_channel_number}
+    Verify Element Is Visible    ${pic_channel_logo}
+    Verify Element Is Visible    ${lbl_now_on}
+    Verify Element Is Visible    ${lbl_next}
+    Verify Element Is Visible    ${lbl_duration}
+    Verify Element Is Visible    ${lbl_tv_program}
+    Verify Element Is Visible    ${lbl_next_tv_program}
 
 Verify AIS 360 Channel Page
     [Documentation]     Owner: Praew
@@ -249,9 +241,44 @@ Verify AIS 360 Channel Page
     Verify To The Right             ${pic_poster}    1    3
     Verify To The Right             ${lbl_poster}    1    3
 
-Verify Home Button
+# Verify List Menu
+Verify Menu On Live TV Page
     [Documentation]     Owner: Praew
-    Wait Element Is Visible     ${lbl_menu_home}
+    Go To Top           ${lbl_quality}
+    Verify List         @{list_live_tv}
+
+Verify Menu On Movies Page
+    [Documentation]     Owner: Praew
+    Verify List         @{list_movies}
+
+Verify Menu On TV Channels Page
+    [Documentation]     Owner: Praew
+    Verify List         @{list_tv_channels}
+
+# Verify Menu Button
+Verify Home Menu
+    [Documentation]     Owner: Praew
+    Verify Menu Button      ${lbl_menu_home}
+
+Verify Movies Menu
+    [Documentation]     Owner: Praew
+    Verify Menu Button       ${lbl_menu_movies}
+
+Verify Promotions Menu
+    [Documentation]     Owner: Praew
+    Verify Menu Button      ${lbl_movies_promotions}
+
+Verify Live TV Menu
+    [Documentation]     Owner: Praew
+    Verify Menu Button      ${lbl_menu_live_tv}
+
+Verify TV Channels Menu
+    [Documentation]     Owner: Praew
+    Verify Menu Button      ${lbl_menu_tv_channels}
+
+Verfy AIS 360 Channel Menu
+    [Documentation]     Owner: Praew
+    Verify Menu Button      ${lbl_menu_360_channel}
 
 # Go To
 Go To Home Page
@@ -362,13 +389,18 @@ Click Menu
     Loop For Find Menu      ${locator}    @{list}
 
 # Verify   
-Verify Menu In Page
+Verify List
     [Documentation]     Owner: Praew
     [Arguments]         @{list}
     Wait Element Is Visible     ${lbl_left_panel}
     Loop For Verify     @{list}
 
 Verify Menu Button
+    [Documentation]     Owner: Praew
+    [Arguments]         ${locator}
+    Verify Element Attribute    ${locator}    ${attr_selected}    true
+
+Verify Poster And Banner
     [Documentation]     Owner: Praew
     [Arguments]         ${locator}
     Verify Element Attribute    ${locator}    ${attr_selected}    true

@@ -35,6 +35,10 @@ Click Ok
     [Documentation]     Owner: Praew
     Press Keycode    23
 
+Click Search Button
+    [Documentation]     Owner: Praew
+    Press Keycode    66
+
 Click Category Button
     [Documentation]     Owner: Praew
     Press Keycode    82
