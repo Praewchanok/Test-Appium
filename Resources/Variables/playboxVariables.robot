@@ -5,12 +5,23 @@ Resource        ../Repositories/playboxRepositories.robot
 ${remote_url}           http://localhost:4723/wd/hub
 ${platformName}         Android
 ${platformVersion}      7.1.2
-${deviceName}           192.168.1.34:6555
+${deviceName}           192.168.1.37:6555
 ${automationName}       UiAutomator2
 ${appActivity}          net.vimmi.settopbox.ui.main.MainActivity
 ${appPackage}           com.ais.playbox.prod
 ${noReset}              true
-${udid}                 192.168.1.34:6555
+${udid}                 192.168.1.37:6555
+
+${appActivity_netflix}      com.netflix.ninja.MainActivity
+${appPackage_netflix}       com.netflix.ninja
+${appActivity_disney}       in.startv.hotstar.ui.splash.TVSplashActivity
+${appPackage_disney}        in.startv.hotstar.dplus.tv
+${appActivity_wetv}         com.ktcp.video.activity.HomeActivity
+${appPackage_wetv}          com.ktcp.osvideo
+${appActivity_viu}          com.viu.aisintegration.ui.activity.AisLoginActivity
+${appPackage_viu}           com.viu.tv
+${appActivity_}
+${appPackage_}
 
 ${attr_content-desc}    content-desc
 ${attr_selected}        selected        # true or false
@@ -38,8 +49,10 @@ ${attr_selected}        selected        # true or false
 ...                     ${lbl_home_anime}           ${lbl_home_popular_tv}          ${lbl_home_premium_tv}          ${lbl_home_premium}         ${lbl_home_premium_rerun}
 ...                     ${lbl_home_playnews}        ${lbl_home_thai_series}         ${lbl_home_you_may_like}        ${lbl_home_thai_movies}     ${lbl_home_action}
 ...                     ${lbl_home_chinese}         ${lbl_home_idol}                ${lbl_home_animation}           ${lbl_home_cartoons}        ${lbl_home_comedy}
-...                     ${lbl_home_drama}           ${lbl_home_romance}             ${lbl_home_thriller_horror}     ${lbl_home_concerts}        ${lbl_home_sports}
+...                     ${lbl_home_drama}           ${lbl_home_romance}             ${lbl_home_horror}              ${lbl_home_concerts}        ${lbl_home_sports}
 @{list_tv_channels}     ${lbl_channels_popular_tv}      ${lbl_channels_digital_tv}      ${lbl_channels_premium_tv}      ${lbl_channels_movies}      
 ...                     ${lbl_channels_varieties}       ${lbl_channels_sports}          ${lbl_channels_kids_family}     ${lbl_channels_documentaries}
 ...                     ${lbl_channels_news}            ${lbl_channels_education}       ${lbl_channels_shopping}        ${lbl_channels_all}
 ...                     ${lbl_channels_ais_promotion}
+@{pic_banner}           ${pic_banner_one}    ${pic_banner_two}    ${pic_banner_three}
+# @{list_word_class}      ${pic_netflix}    ${pic_disney}    ${pic_we_tv}    ${pic_viu}    ${pic_karaoke}         

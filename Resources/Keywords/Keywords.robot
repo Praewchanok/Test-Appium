@@ -66,7 +66,7 @@ Wait Element Is Visible
     [Arguments]         ${locator}
     Wait Until Element Is Visible       ${locator}      30s
 
-# Verify
+# Verify Element
 Verify Element Is Visible
     [Documentation]     Owner: Praew
     [Arguments]         ${locator}
@@ -84,3 +84,114 @@ Verify Element Attribute
     [Arguments]         ${locator}      ${attr_name}    ${match_pattern}
     Wait Element Is Visible     ${locator}
     Element Attribute Should Match      ${locator}      ${attr_name}    ${match_pattern}    regexp = True
+
+# Select
+Loop For Select On Vertical
+    [Documentation]     Owner: Praew
+    [Arguments]         ${locator}    @{list}
+    FOR    ${name}    IN    @{list}
+        IF    '${name}' == '${locator}'
+            BREAK
+        ELSE   
+            Click Down
+        END          
+    END
+
+Select Type On Vertical
+    [Documentation]     Owner: Praew
+    [Arguments]         ${locator}      @{list}
+    Loop For Select On Vertical      ${locator}      @{list}
+
+Loop For Select On Horizontal
+    [Documentation]     Owner: Praew
+    [Arguments]         ${locator}    @{list}
+    FOR    ${name}    IN    @{list}
+        IF    '${name}' == '${locator}'
+            BREAK
+        ELSE   
+            Click Right
+        END          
+    END
+
+Select Type On Horizontal
+    [Documentation]     Owner: Praew
+    [Arguments]         ${locator}      @{list}
+    Loop For Select On Horizontal    ${locator}      @{list}
+
+# Click
+Loop For Find Menu
+    [Documentation]     Owner: Praew
+    # [Arguments]         ${index_menu}      @{list}
+    # FOR    ${index}    ${menu}    IN ENUMERATE    @{list}
+    #     IF    "${index}" == "${index_menu}"
+    #         Remote Click Element    ${menu}
+    #         BREAK
+    #     ELSE   
+    #         Click Down
+    #     END          
+    # END
+    [Arguments]         ${locator}      @{list}
+    FOR    ${name}    IN    @{list}
+        IF    '${name}' == '${locator}'
+            Remote Click Element    ${locator}
+            BREAK
+        ELSE   
+            Click Down
+        END          
+    END
+
+Click Menu
+    [Documentation]     Owner: Praew
+    [Arguments]         ${locator}    @{list}
+    Wait Element Is Visible     ${lbl_left_panel}
+    Click Left
+    Click Down
+    Loop For Find Menu      ${locator}    @{list}
+
+Click Menu On Home Page
+    [Documentation]     Owner: Praew
+    [Arguments]         ${locator}    @{list}
+    Wait Element Is Visible     ${lbl_left_panel}
+    Click Left
+    Loop For Find Menu      ${locator}    @{list}
+
+# Verify
+Loop For Verify
+    [Documentation]     Owner: Praew
+    # [Arguments]         ${locator}    @{list}
+    # FOR    ${text}    IN    @{list}
+    #     Verify Element Is Visible       ${text}
+    #     IF    '${text}' != '${locator}'
+    #         Click Down
+    #     END           
+    # END
+    [Arguments]         @{list}
+    ${length}    Get Length     ${list}
+    FOR    ${index}    ${locator}    IN ENUMERATE    @{list}
+        Verify Element Is Visible    ${locator}
+        IF    ${index} != ${length}
+            Click Down
+        ELSE
+            BREAK
+        END
+    END
+
+Verify List
+    [Documentation]     Owner: Praew
+    [Arguments]         @{list}
+    Click Left
+    Wait Element Is Visible     ${lbl_left_panel}
+    Loop For Verify     @{list}
+
+Verify Menu Button
+    [Documentation]     Owner: Praew
+    ...                 Verify highlighting button
+    [Arguments]         ${locator}
+    Click Left
+    Verify Element Attribute    ${locator}    ${attr_selected}    true
+
+Verify Poster And Banner
+    [Documentation]     Owner: Praew
+    [Arguments]         ${locator}
+    Verify Element Attribute    ${locator}    ${attr_selected}    true
+

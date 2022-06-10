@@ -22,7 +22,20 @@ ${partner}                          PARTNER
 ${browser}                          BROWSER
 ${inbox}                            INBOX
 ${settings}                         SETTINGS
+
+${title_preferences}                Preferences
+${my_profile}                       My Profile
+${recent}                           Recent
+${favorites}                        Favorites
 ${preferences}                      Preferences
+${title_device}                     Device
+${my_apps}                          My Apps
+${network}                          Network
+${information}                      Information
+${software}                         Software Upgrade
+${common}                           Common
+${advanced}                         Advanced
+${app_installer}                    App Installer
 
 ${topic_preferences}                Preferences
 ${ui_language}                      UI Language
@@ -55,7 +68,7 @@ ${action_movies}                    Action Movies
 ${comedy_movies}                    Comedy Movies
 ${drama_movies}                     Drama Movies
 ${romance_movies}                   Romance Movies
-${thriller_and_horror_movies}       Thriller & Horror Movies
+${horror_movies}                    Thriller & Horror Movies
 ${animation_movies}                 Animation Movies
 ${action_thai_movies}               Action Thai Movies
 ${drama_thai_movies}                Drama Thai Movies
@@ -80,6 +93,7 @@ ${home_take_me_out}                 Take Me Out Reality
 ${home_tv_series}                   TV Series
 ${home_conan}                       Detective Conan
 ${home_anime}                       Anime
+
 ${home_popular_tv}                  Popular TV
 ${home_premium_tv}                  Premium TV
 ${home_premium}                     Premium
@@ -96,7 +110,7 @@ ${home_cartoons}                    Cartoons
 ${home_comedy}                      Comedy Movies
 ${home_drama}                       Drama Movies
 ${home_romance}                     Romance Movies
-${home_thriller_horror}             Thriller & Horror Movies
+${home_horror}                      Thriller & Horror Movies
 ${home_concerts}                    Home of Concerts
 ${home_sports}                      Sports
 
@@ -113,3 +127,21 @@ ${channels_education}               Education | Religion
 ${channels_shopping}                Shopping
 ${channels_all_channels}            All Channels
 ${channels_ais_promotion}           AIS PROMOTION
+
+# Text
+${triage}                   Triage
+${nha_harn _the_series}     Nha Harn The Series
+${bad _beauty}              Bad Beauty
+${saneha_stories_4}         Saneha Stories 4
+${take_guy_out_ss5}         Take Guy Out Thailand Season5
+${take_me_out_reality}      Take Me Out Reality : LOVE IS ON แผนรัก เกมลวง
+${meow_ears_up}             Meow Ears Up
+${our_days}                 Our Days
+${ais_5g_verse}             AIS5GVERSE
+${blackout}                 BLACKOUT
+${detective_conan}          Detective Conan: The Scarlet Alibi
+${doraemon_the_movie}       Doraemon the Movie : Nobita's New Dinosaur
+
+${play}                 PLAY        # focused = false or true
+${add_favorites}        ADD TO FAVORITES
+${remove_favorites}     REMOVE FROM FAVORITES
