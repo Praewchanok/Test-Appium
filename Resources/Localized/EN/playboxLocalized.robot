@@ -93,7 +93,7 @@ ${home_take_me_out}                 Take Me Out Reality
 ${home_tv_series}                   TV Series
 ${home_conan}                       Detective Conan
 ${home_anime}                       Anime
-
+${home_live_programs}               Live Programs
 ${home_popular_tv}                  Popular TV
 ${home_premium_tv}                  Premium TV
 ${home_premium}                     Premium
@@ -129,18 +129,11 @@ ${channels_all_channels}            All Channels
 ${channels_ais_promotion}           AIS PROMOTION
 
 # Text
-${triage}                   Triage
-${nha_harn _the_series}     Nha Harn The Series
-${bad _beauty}              Bad Beauty
-${saneha_stories_4}         Saneha Stories 4
-${take_guy_out_ss5}         Take Guy Out Thailand Season5
-${take_me_out_reality}      Take Me Out Reality : LOVE IS ON แผนรัก เกมลวง
-${meow_ears_up}             Meow Ears Up
-${our_days}                 Our Days
-${ais_5g_verse}             AIS5GVERSE
-${blackout}                 BLACKOUT
-${detective_conan}          Detective Conan: The Scarlet Alibi
-${doreamon}                 Doraemon the Movie : Nobita's New Dinosaur
-${play}                 PLAY        # focused = false or true
-${add_favorites}        ADD TO FAVORITES
-${remove_favorites}     REMOVE FROM FAVORITES
+${doreamon}                         Doraemon the Movie : Nobita's New Dinosaur
+${shin_chan}                        Crayon Shin-chan: My Moving Story!
+${play}                             PLAY        # focused = false or true
+${add_favorites}                    ADD TO FAVORITES
+${remove_favorites}                 REMOVE FROM FAVORITES
+${favorites_live}                   Live
+${favorites_movies}                 Movies
+${favorites_serie}                  Series

@@ -19,6 +19,11 @@ Click Up
     [Documentation]     Owner: Praew
     Press Keycode    19
 
+Click Up 2 Times
+    [Documentation]     Owner: Praew
+    Press Keycode    19
+    Press Keycode    19
+
 Click Down
     [Documentation]     Owner: Praew
     Press Keycode    20
@@ -51,6 +56,10 @@ Click Category Button
 Click Live TV
     [Documentation]     Owner: Praew
     Press Keycode    133
+
+Click Favorite
+    [Documentation]     Owner: Praew
+    Press Keycode    134    
 
 Remote Click Element
     [Documentation]     Owner: Praew
@@ -149,25 +158,17 @@ Loop For Find Poster
         END
     END
 
-    # FOR    ${locator}    IN    @{list}    
-    #     IF    "${locator}" == "${lbl_title_poster_one}"
-    #         Check Text Poster    ${expected}    ${locator}
-    #     ELSE IF    "${locator}" == "${lbl_title_poster_two}"
-    #         Check Text Poster    ${expected}    ${locator}
-    #     ELSE IF    "${locator}" == "${lbl_title_poster_three}"
-    #         Check Text Poster    ${expected}    ${locator}
-    #     ELSE IF    "${locator}" == "${lbl_title_poster_four}"
-    #         Check Text Poster    ${expected}    ${locator}
-    #     ELSE IF    "${locator}" == "${lbl_title_poster_five}"
-    #         FOR    ${index}    IN RANGE    ${number}
-    #             ${text}    Get Text    ${locator}
-    #             IF    "${text}" == "${expected}"
-    #                 Remote Click Element    ${locator}
-    #                 BREAK
-    #             ELSE
-    #                 Click Right
-    #             END
-    #         END
+    # Check Text Poster    ${expected}    ${locator_one}
+    # Check Text Poster    ${expected}    ${locator_two}
+    # Check Text Poster    ${expected}    ${locator_three}
+    # Check Text Poster    ${expected}    ${locator_four}
+    # FOR    ${index}    IN RANGE    ${number}
+    #     ${text}    Get Text    ${locator}
+    #     IF    "${text}" == "${expected}"
+    #         Remote Click Element    ${locator}
+    #         BREAK
+    #     ELSE
+    #         Click Right
     #     END
     # END
 
@@ -177,7 +178,7 @@ Check Text Poster
     ${text}    Get Text    ${locator}
     IF    "${text}" == "${expected}"
         Remote Click Element    ${locator}
-    ELSE
+    ELSE IF
         Click Right
     END
 

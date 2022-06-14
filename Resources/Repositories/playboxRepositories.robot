@@ -32,13 +32,13 @@ ${lbl_menu_browser}                     xpath=//*[@resource-id="com.ais.playbox.
 ${lbl_menu_inbox}                       xpath=//*[@resource-id="com.ais.playbox.prod:id/header_label"][@text="${inbox}"]
 ${lbl_menu_settings}                    xpath=//*[@resource-id="com.ais.playbox.prod:id/header_label"][@text="SETTINGS" or @text="ตั้งค่า"]
 # Settings Menu
-${lvw_title_preferences}                accessibility=id=Preferences
+# ${lvw_title_preferences}                accessibility_id=Preferences
 ${lbl_title_preferences}                xpath=//*[@resource-id="com.ais.playbox.prod:id/row_header"][@text="${title_preferences}"]
 ${lbl_menu_my_profile}                  xpath=//*[@resource-id="com.ais.playbox.prod:id/tv_settings_name"][@text="${my_profile}"]
 ${lbl_menu_recent}                      xpath=//*[@resource-id="com.ais.playbox.prod:id/tv_settings_name"][@text="${recent}"]
 ${lbl_menu_favorites}                   xpath=//*[@resource-id="com.ais.playbox.prod:id/tv_settings_name"][@text="${favorites}"]
 ${lbl_menu_preferences}                 xpath=//*[@resource-id="com.ais.playbox.prod:id/tv_settings_name"][@text="Preferences" or @text="การตั้งค่า"]
-${lvw_title_device}                     accessibility_id=Device
+# ${lvw_title_device}                     accessibility_id=Device
 ${lbl_title_device}                     xpath=//*[@resource-id="com.ais.playbox.prod:id/row_header"][@text="${title_device}"]
 ${lbl_menu_my_apps}                     xpath=//*[@resource-id="com.ais.playbox.prod:id/tv_settings_name"][@text="${my_apps}"]
 ${lbl_menu_network}                     xpath=//*[@resource-id="com.ais.playbox.prod:id/tv_settings_name"][@text="${network}"]
@@ -58,6 +58,23 @@ ${lbl_ui_timeout_never}                 xpath=//*[@resource-id="android:id/summa
 ${lbl_player_ui_timeout}                xpath=//*[@resource-id="android:id/title"][@text="${player_ui_timeout}"]
 ${lbl_player_ui_timeout_never}          xpath=//*[@resource-id="android:id/summary"][@text="${timeout_never}"]
 ${lbl_timeout_never}                    xpath=//*[@resource-id="android:id/title"][@text="${timeout_never}"]
+# Settings Menu > Favorites Menu
+${lbl_favorites_live}                   xpath=//*[@resource-id="com.ais.playbox.prod:id/item_content_header_title"][@text="${favorites_live}"]
+${lbl_favorites_movies}                 xpath=//*[@resource-id="com.ais.playbox.prod:id/item_content_header_title"][@text="${favorites_movies}"]
+${lbl_favorites_serie}                  xpath=//*[@resource-id="com.ais.playbox.prod:id/item_content_header_title"][@text="${favorites_serie}"]
+    # xpath=//*[@resource-id="com.ais.playbox.prod:id/row_header"][@text=""]
+    # xpath=//*[@resource-id="com.ais.playbox.prod:id/row_header"][@text=""]
+    # xpath=//*[@resource-id="com.ais.playbox.prod:id/row_header"][@text=""]
+    # xpath=(//*[@resource-id="com.ais.playbox.prod:id/card_channel_image"])
+    # xpath=(//*[@resource-id="com.ais.playbox.prod:id/card_channel_title"])
+    # xpath=(//*[@resource-id="com.ais.playbox.prod:id/card_movie_image"])
+    # xpath=(//*[@resource-id="com.ais.playbox.prod:id/card_movie_title"])
+    # xpath=//*[@resource-id="com.ais.playbox.prod:id/card_movie_title"][@text="Doraemon the Movie : Nobita's New Dinosaur"]
+    # xpath=(//*[@resource-id="com.ais.playbox.prod:id/card_episode_image"])
+    # xpath=(//*[@resource-id="com.ais.playbox.prod:id/card_episode_title"])
+    # id=com.ais.playbox.prod:id/card_episode_image
+    # id=com.ais.playbox.prod:id/card_episode_title
+
 
 ${pic_banner}                           xpath=//*[@resource-id="com.ais.playbox.prod:id/card_banner_image"]
 # @{pic_banner}                           xpath=//*[@resource-id="com.ais.playbox.prod:id/card_banner_image"]        
@@ -176,6 +193,7 @@ ${lbl_result_series}                    xpath=(//*[@resource-id="com.ais.playbox
 ${lbl_result_episodes}                  xpath=(//*[@resource-id="com.ais.playbox.prod:id/card_episode_title"])[1]
 ${lbl_nothing}                          id=com.ais.playbox.prod:id/nothing_was_found_title
 # Content On Home Page
+${lbl_home_content}                     xpath=(//*[@resource-id="com.ais.playbox.prod:id/row_header"])[1]
 ${lbl_home_world_class}                 xpath=//*[@resource-id="com.ais.playbox.prod:id/row_header"][@text="${home_world_class}"]
 ${lbl_home_recommended}                 xpath=//*[@resource-id="com.ais.playbox.prod:id/row_header"][@text="${home_recommended}"]
 ${lbl_home_live_sports}                 xpath=//*[@resource-id="com.ais.playbox.prod:id/row_header"][@text="${home_live_sports}"]
@@ -192,6 +210,7 @@ ${lbl_home_take_me_out}                 xpath=//*[@resource-id="com.ais.playbox.
 ${lbl_home_tv_series}                   xpath=//*[@resource-id="com.ais.playbox.prod:id/row_header"][@text="${home_tv_series}"]
 ${lbl_home_conan}                       xpath=//*[@resource-id="com.ais.playbox.prod:id/row_header"][@text="${home_conan}"]
 ${lbl_home_anime}                       xpath=//*[@resource-id="com.ais.playbox.prod:id/row_header"][@text="${home_anime}"]
+${lbl_home_live_programs}               xpath=//*[@resource-id="com.ais.playbox.prod:id/row_header"][@text="${home_live_programs}"]
 ${lbl_home_popular_tv}                  xpath=//*[@resource-id="com.ais.playbox.prod:id/row_header"][@text="${home_popular_tv}"]
 ${lbl_home_premium_tv}                  xpath=//*[@resource-id="com.ais.playbox.prod:id/row_header"][@text="${home_premium_tv}"]
 ${lbl_home_premium}                     xpath=//*[@resource-id="com.ais.playbox.prod:id/row_header"][@text="${home_premium}"]
@@ -246,14 +265,16 @@ ${lbl_ais_promotion}                    id=com.ais.playbox.prod:id/card_movie_ti
 ${lbl_page_ais_360}                     id=com.ais.playbox.prod:id/item_content_header_title
 ${pic_list_ais_360}                     accessibility_id=AIS 360 CHANNEL
 
-${pic_home_recommended}     xpath=(//*[@content-desc="Recommended"]//android.widget.ImageView[@resource-id="com.ais.playbox.prod:id/card_movie_image"])[1]
-${lbl_home_recommended}     xpath=(//*[@content-desc="Recommended"]//android.widget.TextView[@resource-id="com.ais.playbox.prod:id/card_movie_title"])[1]
 ${pic_title_poster_one}                 xpath=(//*[@resource-id="com.ais.playbox.prod:id/card_movie_image"])[1]
 ${lbl_title_poster_one}                 xpath=(//*[@resource-id="com.ais.playbox.prod:id/card_movie_title"])[1]
 ${lbl_title_poster_two}                 xpath=(//*[@resource-id="com.ais.playbox.prod:id/card_movie_title"])[2]
 ${lbl_title_poster_three}               xpath=(//*[@resource-id="com.ais.playbox.prod:id/card_movie_title"])[3]
 ${lbl_title_poster_four}                xpath=(//*[@resource-id="com.ais.playbox.prod:id/card_movie_title"])[4]
 ${lbl_title_poster_five}                xpath=(//*[@resource-id="com.ais.playbox.prod:id/card_movie_title"])[5]
+${lbl_title_shin_chan}                  xpath=//*[@resource-id="com.ais.playbox.prod:id/card_movie_title"][@text="${shin_chan}"]       
+${lbl_title_mv_one}                     xpath=(//*[@resource-id="com.ais.playbox.prod:id/card_episode_title"])[1]
+${lbl_title_mv_two}                     xpath=(//*[@resource-id="com.ais.playbox.prod:id/card_episode_title"])[2]
+${lbl_title_mv_three}                   xpath=(//*[@resource-id="com.ais.playbox.prod:id/card_episode_title"])[3]
 
 ${icn_lock}                             id=com.ais.playbox.prod:id/card_movie_icon_lock
 ${pic_poster}                           id=com.ais.playbox.prod:id/details_overview_image
@@ -263,22 +284,10 @@ ${btn_remove_favorites}                 xpath=//*[@resource-id="com.ais.playbox.
 ${lbl_detail_title}                     id=com.ais.playbox.prod:id/detail_view_title
 ${lbl_detail_description}               id=com.ais.playbox.prod:id/detail_view_description
 ${lbl_related_titles}                   id=com.ais.playbox.prod:id/row_header
+${lbl_continue_play}                    id=android:id/message
+${btn_no}                               id=android:id/button2
+${btn_yes}                              id=android:id/button2
 # ${lvw_poster_related_titles}            accessibility_id=RELATED TITLES
-# Favorites Menu
-    # xpath=//*[@resource-id="com.ais.playbox.prod:id/item_content_header_title"][@text=""]
-    # xpath=//*[@resource-id="com.ais.playbox.prod:id/item_content_header_title"][@text=""]
-    # xpath=//*[@resource-id="com.ais.playbox.prod:id/item_content_header_title"][@text=""]
-    # xpath=//*[@resource-id="com.ais.playbox.prod:id/row_header"][@text=""]
-    # xpath=//*[@resource-id="com.ais.playbox.prod:id/row_header"][@text=""]
-    # xpath=//*[@resource-id="com.ais.playbox.prod:id/row_header"][@text=""]
-    # xpath=(//*[@resource-id="com.ais.playbox.prod:id/card_channel_image"])
-    # xpath=(//*[@resource-id="com.ais.playbox.prod:id/card_channel_title"])
-    # xpath=(//*[@resource-id="com.ais.playbox.prod:id/card_movie_image"])
-    # xpath=(//*[@resource-id="com.ais.playbox.prod:id/card_movie_title"])
-    # xpath=(//*[@resource-id="com.ais.playbox.prod:id/card_episode_image"])
-    # xpath=(//*[@resource-id="com.ais.playbox.prod:id/card_episode_title"])
-    # id=com.ais.playbox.prod:id/card_episode_image
-    # id=com.ais.playbox.prod:id/card_episode_title
 
     # accessibility_id=${home_world_class}
     # accessibility_id=${home_recommended}

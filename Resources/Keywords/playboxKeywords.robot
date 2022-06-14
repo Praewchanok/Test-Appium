@@ -94,10 +94,30 @@ Verify AIS 360 Channel Menu
     [Documentation]     Owner: Praew
     Verify Menu Button      ${lbl_menu_360_channel}
 
-# Click Menu On Settings Page
+# Settings Page
+Verify Settings Page
+    [Documentation]     Owner: Praew
+    Verify Element Is Visible    ${lbl_title_preferences}
+    Verify Element Is Visible    ${lbl_menu_my_profile}
+    Verify Element Is Visible    ${lbl_menu_recent}
+    Verify Element Is Visible    ${lbl_menu_favorites}
+    Verify Element Is Visible    ${lbl_menu_preferences}
+    Verify Element Is Visible    ${lbl_title_device}
+    Verify Element Is Visible    ${lbl_menu_my_apps}
+    Verify Element Is Visible    ${lbl_menu_network}
+    Verify Element Is Visible    ${lbl_menu_information}
+    Verify Element Is Visible    ${lbl_menu_software}
+    Verify Element Is Visible    ${lbl_menu_common}
+    Verify Element Is Visible    ${lbl_menu_advanced}
+    Verify Element Is Visible    ${lbl_menu_app_installer}
+
 Click Preferences Menu
     [Documentation]     Owner: Praew
-    Remote Click Element       ${lbl_menu_preferences}
+    Remote Click Element    ${lbl_menu_preferences}
+
+Click Favorites Menu
+    [Documentation]     Owner: Praew
+    Remote Click Element    ${lbl_menu_favorites}
 
 # Preferences Page
 Click UI Language
@@ -136,6 +156,18 @@ Verify UI Timeout And Player UI Timeout
     Verify Element Is Visible    ${lbl_topic}
     Verify Element Is Visible    ${lbl_ui_timeout_never}
     Verify Element Is Visible    ${lbl_player_ui_timeout_never}
+
+# Favorits Page
+Verify Menu On Favorites Page
+    [Documentation]     Owner: Praew
+    Verify Element Is Visible    ${lbl_favorites_live}
+    Verify Element Is Visible    ${lbl_favorites_movies}
+    Verify Element Is Visible    ${lbl_favorites_serie}
+
+Select Movies Section
+    [Documentation]     Owner: Praew
+    Select Type On Vertical    ${lbl_favorites_movies}    @{list_favorites}
+    
 
 # Home Page
 Verify Left Panel
@@ -243,7 +275,7 @@ Verify Banner To The Right
         Click Right
     END
 
-Verify Banner To The Left       # Edit
+Verify Banner To The Left
     [Documentation]     Owner: Praew
     [Arguments]         ${locator_one}    ${locator_two}    ${end}
     FOR     ${index}    IN RANGE    ${end}
@@ -256,11 +288,98 @@ Verify Banner To The Left       # Edit
 # Music Video Content
 Select Tero Music Video
     [Documentation]     Owner: Praew
-    Select Type On Vertical         ${lbl_home_tero}    @{list_home_content} 
+    Select Type On Vertical    ${lbl_home_tero}    @{list_home_content} 
 
-Verify Poster Tero Music Video      # Edit
+Verify Poster Tero Music Video
     [Documentation]     Owner: Praew
-    Verify Element Attribute    ${pic_title_poster_one}    
+    Verify Music Video To The Right    ${lbl_title_mv_one}    ${lbl_title_mv_two}    ${lbl_title_mv_three}    3
+    
+
+Verify Music Video To The Right
+    [Documentation]     Owner: Praew
+    [Arguments]         ${locator_one}    ${locator_two}    ${locater_three}    ${end}
+    Verify Element Attribute  ${locator_one}    ${attr_selected}    true
+    Click Right
+    Verify Element Attribute  ${locator_two}    ${attr_selected}    true
+    Click Right
+    FOR     ${index}    IN RANGE    ${end}
+        Verify Element Attribute    ${locater_three}    ${attr_selected}    true
+        Click Right
+    END
+
+Verify Music Video To The Left
+    [Documentation]     Owner: Praew
+    [Arguments]         ${locator_one}    ${locator_two}    ${locater_three}    ${end}
+    FOR     ${index}    IN RANGE    ${end}
+        Verify Element Attribute    ${locater_three}    ${attr_selected}    true
+        Click Left
+    END
+    Click Left
+    Verify Element Attribute  ${locator_two}    ${attr_selected}    true
+    Click Left
+    Verify Element Attribute  ${locator_one}    ${attr_selected}    true
+
+Select Premium
+    [Documentation]     Owner: Praew
+    Select Type On Vertical    ${lbl_home_premium}    @{list_home_content}
+
+Verify Poster Premium
+    [Documentation]     Owner: Praew
+    Verify Poster To The Right    ${lbl_title_poster_one}    ${lbl_title_poster_two}    ${lbl_title_poster_three}    ${lbl_title_poster_four}    ${lbl_title_poster_five}    2
+    Verify Poster To The Left     ${lbl_title_poster_one}    ${lbl_title_poster_two}    ${lbl_title_poster_three}    ${lbl_title_poster_four}    ${lbl_title_poster_five}    2
+
+Select New Releases
+    [Documentation]     Owner: Praew
+    Select Type Upper    ${lbl_home_content}    ${home_new_releases}
+
+Select Type Upper
+    [Documentation]     Owner: Praew
+    [Arguments]         ${locator}    ${expected}
+    FOR    ${index}    IN RANGE    30
+        ${text}    Get Text    ${locator}
+        IF    "${text}" != "${expected}"
+            Click Up
+        ELSE
+            BREAK
+        END
+    END
+
+Verify Poster New Releases
+    [Documentation]     Owner: Praew
+    Verify Poster To The Right    ${lbl_title_poster_one}    ${lbl_title_poster_two}    ${lbl_title_poster_three}    ${lbl_title_poster_four}    ${lbl_title_poster_five}    2
+    Verify Poster To The Left     ${lbl_title_poster_one}    ${lbl_title_poster_two}    ${lbl_title_poster_three}    ${lbl_title_poster_four}    ${lbl_title_poster_five}    2
+
+Verify Poster To The Right
+    [Documentation]     Owner: Praew
+    [Arguments]         ${locator_one}    ${locator_two}    ${locater_three}    ${locater_four}    ${locater_five}    ${end}
+    Verify Element Attribute    ${locator_one}      ${attr_selected}    true
+    Click Right
+    Verify Element Attribute    ${locator_two}      ${attr_selected}    true
+    Click Right
+    Verify Element Attribute    ${locater_three}    ${attr_selected}    true
+    Click Right
+    Verify Element Attribute    ${locater_four}     ${attr_selected}    true
+    Click Right
+    FOR     ${index}    IN RANGE    ${end}
+        Verify Element Attribute    ${locater_five}    ${attr_selected}    true
+        Click Right
+    END
+
+Verify Poster To The Left
+    [Documentation]     Owner: Praew
+    [Arguments]         ${locator_one}    ${locator_two}    ${locater_three}    ${locater_four}    ${locater_five}    ${end}
+    FOR     ${index}    IN RANGE    ${end}
+        Verify Element Attribute    ${locater_five}    ${attr_selected}    true
+        Click Left
+    END
+    Click Left
+    Verify Element Attribute    ${locater_four}     ${attr_selected}    true
+    Click Left
+    Verify Element Attribute    ${locater_three}    ${attr_selected}    true
+    Click Left
+    Verify Element Attribute    ${locator_two}      ${attr_selected}    true
+    Click Left
+    Verify Element Attribute    ${locator_one}      ${attr_selected}    true    
     
 
 # Recommended Content
@@ -285,6 +404,48 @@ Verify Related Titles
     Verify Element Is Visible    ${lbl_related_titles}
     Verify Element Is Visible    ${pic_title_poster_one}
     Verify Element Is Visible    ${lbl_title_poster_one}
+    Verify Element Is Visible    ${btn_play}
+
+Verify Add To Favorites Button
+    [Documentation]    Owner: Praew
+    Verify Element Is Visible    ${btn_add_favorites}
+
+Click Add To Favorites Button
+    [Documentation]    Owner: Praew
+    ${value}    Get Element Attribute    ${btn_add_favorites}    ${attr_selected}
+    IF    "${value}" == "true"
+        Remote Click Element    ${btn_add_favorites}
+    ELSE
+        Click Right
+        Remote Click Element    ${btn_add_favorites}
+    END
+
+Verify Remove From Favorites Button
+    [Documentation]     Owner: Praew
+    Verify Element Is Visible    ${btn_remove_favorites}
+
+Click Play Button
+    [Documentation]     Owner: Praew
+    Remote Click Element    ${btn_play}
+    Remote Click Element    ${btn_no}
+
+Verify Text Add After Click Fovorite Button
+    [Documentation]     Owner: Praew
+    Click Back
+    Verify Element Is Visible    ${btn_remove_favorites}
+
+Selcet Crayon Shin-chan: My Moving Story
+    [Documentation]     Owner: Praew
+    Remote Click Element    ${lbl_title_shin_chan}
+
+Verfy Text Remove After Click Fovorite Button
+    [Documentation]     Owner: Praew
+    Click Back
+    Verify Element Is Visible    ${btn_add_favorites}
+
+Verify Movie Section After Remove Movies
+    [Documentation]     Owner: Praew
+    Page Should Not Contain Element    ${lbl_title_shin_chan}    
 
 # Word Class Enterainment Content
 Select Word Class Entertainment
