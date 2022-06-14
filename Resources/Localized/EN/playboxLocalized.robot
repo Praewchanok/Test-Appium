@@ -140,8 +140,7 @@ ${our_days}                 Our Days
 ${ais_5g_verse}             AIS5GVERSE
 ${blackout}                 BLACKOUT
 ${detective_conan}          Detective Conan: The Scarlet Alibi
-${doraemon_the_movie}       Doraemon the Movie : Nobita's New Dinosaur
-
+${doreamon}                 Doraemon the Movie : Nobita's New Dinosaur
 ${play}                 PLAY        # focused = false or true
 ${add_favorites}        ADD TO FAVORITES
 ${remove_favorites}     REMOVE FROM FAVORITES

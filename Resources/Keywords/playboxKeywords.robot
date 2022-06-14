@@ -67,11 +67,11 @@ Click Live TV Menu
 
 Click TV Channels Menu
     [Documentation]     Owner: Praew
-    Click Menu          ${lbl_menu_tv_channels}     @{list_menu}
+    Click Menu On Home Page    ${lbl_menu_tv_channels}     @{list_menu}
 
 Click AIS 360 Channel Menu
     [Documentation]     Owner: Praew
-    Click Menu          ${lbl_menu_360_channel}     @{list_menu}
+    Click Menu On Home Page    ${lbl_menu_360_channel}     @{list_menu}
 
 # Verify Menu Button
 Verify Home Menu
@@ -233,82 +233,68 @@ Verify Content Home Page
     [Documentation]     Owner: Praew
     Loop For Verify     @{list_home_content}
 
-Verify Banner To The Right      # Edit
+Verify Banner To The Right
     [Documentation]     Owner: Praew
-    # [Arguments]         ${locator}      ${start}    ${end}
-    # FOR     ${index}    IN RANGE    ${start}    ${end}
-    #     Log     ${locator}[${index}]
-    #     Click Left
-    # END
-    [Arguments]         @{list}
-    ${length}    Get Length    ${list}
-    FOR     ${index}    ${path_banner}    IN ENUMERATE    @{list_locator}    index=1
-        Verify Element Attribute    ${path_banner}  ${attr_selected}    true
-        IF    ${index} != ${length}
-            # BRAKE
-        # ELSE
-            Click Left      
-        END
+    [Arguments]         ${locator_one}        ${locator_two}    ${end}
+    Verify Element Attribute    ${pic_banner_one}    ${attr_selected}    true
+    Click Right
+    FOR     ${index}    IN RANGE    ${end}
+        Verify Element Attribute    ${locator_two}    ${attr_selected}    true
+        Click Right
     END
 
 Verify Banner To The Left       # Edit
     [Documentation]     Owner: Praew
-    [Arguments]         ${locator}      ${start}    ${end}
-    ${index}    Set Variable    ${end}
-    FOR     ${index-1}    IN RANGE    ${start}    ${end}
-        Log     ${locator}[${index-1}]
+    [Arguments]         ${locator_one}    ${locator_two}    ${end}
+    FOR     ${index}    IN RANGE    ${end}
+        Verify Element Attribute    ${locator_two}    ${attr_selected}    true
         Click Left
     END
+    Click Left
+    Verify Element Attribute    ${pic_banner_one}    ${attr_selected}    true
 
+# Music Video Content
 Select Tero Music Video
     [Documentation]     Owner: Praew
     Select Type On Vertical         ${lbl_home_tero}    @{list_home_content} 
 
 Verify Poster Tero Music Video      # Edit
     [Documentation]     Owner: Praew
-    Verify Poster To The Right     @{pic_home_poster}
+    Verify Element Attribute    ${pic_title_poster_one}    
+    
 
-Verify Poster To The Right      # Edit
-    [Documentation]     Owner: Praew
-    [Arguments]         @{list}
-    ${length}    Get Length     ${list}
-    # ${index}    Set Variable    1
-    FOR     ${index}    ${locator}    IN ENUMERATE    @{list}
-        IF  ${index} != ${length}  
-            Verify Poster And Banner  ${locator}
-        END
-        Click Right
-    END
-
-Verify Poster To The Left       # Edit
-    [Arguments]         @{list}
-    ${length}    Get Length     ${list}
-    ${index}    Set Variable    ${length}
-    FOR     ${index-1}    ${locator}    IN ENUMERATE    @{list}
-        IF  ${index-1} != ${length}  
-            Verify Poster And Banner  ${locator}
-            Click Left
-        ELSE
-            Verify Poster And Banner  ${locator}
-        END
-    END
-
-Verify Poster       # Edit
-    [Documentation]     Owner: Praew
-    [Arguments]         ${locator}    ${start}    ${end}
-    ${length}    Get Length     ${locator}
-    FOR     ${index}    IN RANGE    ${start}    ${end}
-        Verify Element Is Visible   ${locator}
-    END
-
+# Recommended Content
 Select Recommended
     [Documentation]     Owner: Praew
     Select Type On Vertical     ${lbl_home_recommended}    @{list_home_content}
 
+Select Doraemon the Movie : Nobita's New Dinosaur
+    [Documentation]     Owner: Praew                                                  
+    Loop For Find Poster    ${doreamon}    30    @{list_poster}
+
+Verify Doraemon the Movie : Nobita's New Dinosaur Information Page
+    [Documentation]     Owner: Praew
+    Verify Element Is Visible    ${pic_poster}
+    Verify Element Is Visible    ${btn_play}
+    Verify Element Is Visible    ${btn_add_favorites}
+    Verify Element Is Visible    ${lbl_detail_title}
+    Verify Element Is Visible    ${lbl_detail_description}
+
+Verify Related Titles
+    [Documentation]     Owner: Praew
+    Verify Element Is Visible    ${lbl_related_titles}
+    Verify Element Is Visible    ${pic_title_poster_one}
+    Verify Element Is Visible    ${lbl_title_poster_one}
+
+# Word Class Enterainment Content
 Select Word Class Entertainment
     [Documentation]     Owner: Praew
     Click Down
     Select Type On Vertical     ${lbl_home_world_class}    @{list_home_content}      
+
+Verify Word Class Entertainment Banner
+    [Documentation]     Owner: Praew
+    Verify Banner To The Right    @{list_word_class}
 
 Launch Disney Plus Hotstar
     [Documentation]     Owner: Praew
@@ -316,13 +302,13 @@ Launch Disney Plus Hotstar
 
 Verify Disney Plus Hotstar Page
     [Documentation]     Owner: Praew
-    Verify Element Is Visible       ${icn_disney}
-    Verify Element Is Visible       ${lbl_disney_title}
-    Verify Element Is Visible       ${lbl_disney_description}
-    Verify Element Is Visible       ${btn_disney_continue}
-    Verify Element Is Visible       ${lbl_disney_privacy}
-    # Remote Click Element    ${btn_disney_continue}
-    # Verify Element Is Visible       ${lbl_disney_left_panel}
+    Verify Element Is Visible    ${lbl_disney_left_panel}
+    Verify Element Is Visible    ${pic_disney_banner}
+
+Click Back From Disney Plus Hotstar 
+    [Documentation]     Owner: Praew
+    Click Back
+    Click Back
 
 Launch We TV
     [Documentation]     Owner: Praew
@@ -336,19 +322,9 @@ Verify We TV Page
 
 Click Back From We TV
     [Documentation]     Owner: Praew
-        Click Back
-    ${status}    Run Keyword And Return Status      Page Should Contain Element     ${lbl_wetv_home_content}
-    IF    "${status}" == "True"
-        Verify Element Is Visible       ${lbl_wetv_home_content}
-        Verify Element Is Visible       ${lbl_wetv_vertical_list}
-        Verify Element Is Visible       ${pic_wetv_qrcode}
-        Verify Element Is Visible       ${lbl_wetv_qrcode_title}
-        Verify Element Is Visible       ${lbl_wetv_qrcode_title_2}
-        Verify Element Is Visible       ${lbl_wetv_qrcode_sunb_title}
-        Verify Element Is Visible       ${btn_wetv_qrcode_quit}
-        Verify Element Is Visible       ${btn_wetv_drcode_back}
-        Remote Click Element            ${btn_wetv_qrcode_quit}   
-    END
+    Click Back
+    Remote Click Element            ${btn_wetv_qrcode_quit}   
+
 
 Launch Viu
     [Documentation]     Owner: Praew
@@ -372,17 +348,27 @@ Launch Ais Karaoke
     Remote Click Element    ${pic_karaoke}
 
 Verify Ais Karaoke Page
-    ${status}    Run Keyword And Return Status      Page Should Contain Element    ${lbl_karaoke_error}
-    IF    "${status}" == "True" 
-        Verify Element Is Visible       ${lbl_karaoke_error}
-        Verify Element Is Visible       ${lbl_karaoke_error_decs}
-        Verify Element Is Visible       ${lbl_karaoke_ok}
-        Remote Click Element            ${lbl_karaoke_ok}  
-        Verify Element Is Visible       ${lbl_karaoke_quit}
-        Verify Element Is Visible       ${btn_karaoke_cancle}
-        Verify Element Is Visible       ${btn_karaoke_quit}
-        Remote Click Element            ${btn_karaoke_quit}
-    END
+    [Documentation]     Owner: Praew
+    Verify Element Is Visible       ${lbl_karaoke_error}
+    Verify Element Is Visible       ${lbl_karaoke_error_decs}
+    Verify Element Is Visible       ${lbl_karaoke_ok}
+
+Click Back From Ais Karaoke
+    [Documentation]     Owner: Praew
+    Click Back
+    Remote Click Element            ${btn_karaoke_quit}
+
+Select Partner Application Menu
+    [Documentation]     Owner: Praew
+    Select Type On Vertical    ${lbl_menu_netflix}    @{list_menu}
+
+Verify Icon Of Partner Application
+    [Documentation]     Owner: Praew
+    Verify Element Is Visible    ${lbl_menu_netflix}
+    Verify Element Is Visible    ${lbl_menu_disney}
+    Verify Element Is Visible    ${lbl_menu_we_tv}
+    Verify Element Is Visible    ${lbl_menu_viu}
+    Verify Element Is Visible    ${lbl_menu_karaoke}
 
 # Movies Page
 Verify Menu On Movies Page
@@ -408,11 +394,11 @@ Verify Live TV Page
     [Documentation]     Owner: Praew
     Verify Element Is Visible    ${lbl_channel_number}
     Verify Element Is Visible    ${pic_channel_logo}
-    Verify Element Is Visible    ${lbl_now_on}
-    Verify Element Is Visible    ${lbl_next}
-    Verify Element Is Visible    ${lbl_duration}
-    Verify Element Is Visible    ${lbl_tv_program}
-    Verify Element Is Visible    ${lbl_next_tv_program}
+    # Verify Element Is Visible    ${lbl_now_on}
+    # Verify Element Is Visible    ${lbl_next}
+    # Verify Element Is Visible    ${lbl_duration}
+    # Verify Element Is Visible    ${lbl_tv_program}
+    # Verify Element Is Visible    ${lbl_next_tv_program}
 
 Verify Menu On Live TV Page
     [Documentation]     Owner: Praew
@@ -425,19 +411,16 @@ Verify Menu On TV Channels Page
     Verify List         @{list_tv_channels}  
 
 # AIS 360 Channel Page
-Verify AIS 360 Channel Page     # Edit
+Verify AIS 360 Channel Page
     [Documentation]     Owner: Praew
     Verify Element Is Visible       ${lbl_page_ais_360}
     Verify Element Is Visible       ${pic_list_ais_360}
-    Verify Poster       ${pic_poster}    1    3
-    Verify Poster       ${lbl_poster}    1    3                         
-
-
-
+    Verify Element Is Visible       ${pic_title_poster_one}                        
+    Verify Element Is Visible       ${lbl_title_poster}
 # Go To
 Go To Home Page
     [Documentation]     Owner: Praew
-    Click Back
+    # Click Back
     Click Home
 
 Go To Top

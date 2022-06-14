@@ -23,6 +23,11 @@ Click Down
     [Documentation]     Owner: Praew
     Press Keycode    20
 
+Click Down 2 Times
+    [Documentation]     Owner: Praew
+    Press Keycode    20
+    Press Keycode    20   
+
 Click Left
     [Documentation]     Owner: Praew
     Press Keycode    21
@@ -100,6 +105,7 @@ Loop For Select On Vertical
 Select Type On Vertical
     [Documentation]     Owner: Praew
     [Arguments]         ${locator}      @{list}
+    Click Down
     Loop For Select On Vertical      ${locator}      @{list}
 
 Loop For Select On Horizontal
@@ -117,6 +123,63 @@ Select Type On Horizontal
     [Documentation]     Owner: Praew
     [Arguments]         ${locator}      @{list}
     Loop For Select On Horizontal    ${locator}      @{list}
+
+Loop For Find Poster
+    [Documentation]     Owner: Praew
+    [Arguments]         ${expected}    ${number}    @{list}
+    FOR    ${locator}    IN    @{list}    
+        IF    '${locator}' == '${lbl_title_poster_one}'
+            Check Text Poster    ${expected}    ${locator}
+        ELSE IF    '${locator}' == '${lbl_title_poster_two}'
+            Check Text Poster    ${expected}    ${locator}
+        ELSE IF    '${locator}' == '${lbl_title_poster_three}'
+            Check Text Poster    ${expected}    ${locator}
+        ELSE IF    '${locator}' == '${lbl_title_poster_four}'
+            Check Text Poster    ${expected}    ${locator}
+        ELSE IF    '${locator}' == '${lbl_title_poster_five}'
+            FOR    ${index}    IN RANGE    ${number}
+                ${text}    Get Text    ${locator}
+                IF    "${text}" == "${expected}"
+                    Remote Click Element    ${locator}
+                    BREAK
+                ELSE
+                    Click Right
+                END
+            END
+        END
+    END
+
+    # FOR    ${locator}    IN    @{list}    
+    #     IF    "${locator}" == "${lbl_title_poster_one}"
+    #         Check Text Poster    ${expected}    ${locator}
+    #     ELSE IF    "${locator}" == "${lbl_title_poster_two}"
+    #         Check Text Poster    ${expected}    ${locator}
+    #     ELSE IF    "${locator}" == "${lbl_title_poster_three}"
+    #         Check Text Poster    ${expected}    ${locator}
+    #     ELSE IF    "${locator}" == "${lbl_title_poster_four}"
+    #         Check Text Poster    ${expected}    ${locator}
+    #     ELSE IF    "${locator}" == "${lbl_title_poster_five}"
+    #         FOR    ${index}    IN RANGE    ${number}
+    #             ${text}    Get Text    ${locator}
+    #             IF    "${text}" == "${expected}"
+    #                 Remote Click Element    ${locator}
+    #                 BREAK
+    #             ELSE
+    #                 Click Right
+    #             END
+    #         END
+    #     END
+    # END
+
+Check Text Poster
+    [Documentation]     Owner: Praew
+    [Arguments]         ${expected}    ${locator}
+    ${text}    Get Text    ${locator}
+    IF    "${text}" == "${expected}"
+        Remote Click Element    ${locator}
+    ELSE
+        Click Right
+    END
 
 # Click
 Loop For Find Menu
@@ -188,10 +251,5 @@ Verify Menu Button
     ...                 Verify highlighting button
     [Arguments]         ${locator}
     Click Left
-    Verify Element Attribute    ${locator}    ${attr_selected}    true
-
-Verify Poster And Banner
-    [Documentation]     Owner: Praew
-    [Arguments]         ${locator}
     Verify Element Attribute    ${locator}    ${attr_selected}    true
 

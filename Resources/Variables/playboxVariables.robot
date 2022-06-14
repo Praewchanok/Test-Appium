@@ -5,12 +5,12 @@ Resource        ../Repositories/playboxRepositories.robot
 ${remote_url}           http://localhost:4723/wd/hub
 ${platformName}         Android
 ${platformVersion}      7.1.2
-${deviceName}           192.168.1.37:6555
+${deviceName}           192.168.1.33:6555
 ${automationName}       UiAutomator2
 ${appActivity}          net.vimmi.settopbox.ui.main.MainActivity
 ${appPackage}           com.ais.playbox.prod
 ${noReset}              true
-${udid}                 192.168.1.37:6555
+${udid}                 192.168.1.33:6555
 
 ${appActivity_netflix}      com.netflix.ninja.MainActivity
 ${appPackage_netflix}       com.netflix.ninja
@@ -55,4 +55,5 @@ ${attr_selected}        selected        # true or false
 ...                     ${lbl_channels_news}            ${lbl_channels_education}       ${lbl_channels_shopping}        ${lbl_channels_all}
 ...                     ${lbl_channels_ais_promotion}
 @{pic_banner}           ${pic_banner_one}    ${pic_banner_two}    ${pic_banner_three}
-# @{list_word_class}      ${pic_netflix}    ${pic_disney}    ${pic_we_tv}    ${pic_viu}    ${pic_karaoke}         
+@{list_word_class}      ${pic_netflix}    ${pic_disney}    ${pic_we_tv}    ${pic_viu}    ${pic_karaoke}
+@{list_poster}          ${lbl_title_poster_one}    ${lbl_title_poster_two}    ${lbl_title_poster_three}    ${lbl_title_poster_four}    ${lbl_title_poster_five}         
